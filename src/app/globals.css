@@ -153,8 +153,19 @@
   }
   html {
     -webkit-text-size-adjust: 100%;
+    font-size: 90%;
+    height: 100%;
+    overflow: hidden;
   }
   body {
     margin: 0;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior-y: none;
+  }
+
+  body > * {
+    height: 100%;
   }
 }
