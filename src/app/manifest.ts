@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'MiSencillo',
     short_name: 'MiSencillo',
     start_url: '/',
-    display: 'standalone',
+    display: 'fullscreen',
     background_color: '#ffffff',
     theme_color: '#5a45fe',
     icons: [

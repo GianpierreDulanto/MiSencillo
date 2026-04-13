@@ -12,7 +12,15 @@
 
 # testing
 /coverage
-
+.local-tools/
+*.zip
+*.tar.gz
+*.dmg
+/.gradle
+/.local-tools
+/app
+/build
+/gradle
 # next.js
 /.next/
 /out/

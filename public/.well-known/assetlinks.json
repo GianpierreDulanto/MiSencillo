@@ -3,9 +3,9 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.example.misencillo",
+      "package_name": "app.netlify.misencillo.twa",
       "sha256_cert_fingerprints": [
-        "AA:BB:CC:DD:EE:FF:11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:11:22:33:44:55:66:77:88:99:AA:BB"
+        "DD:D4:B0:D4:E7:74:3E:CD:79:A0:8F:49:3E:78:8E:B7:51:0C:B6:54:D3:AE:F4:23:A8:21:4F:FD:5E:51:13:81"
       ]
     }
   }
