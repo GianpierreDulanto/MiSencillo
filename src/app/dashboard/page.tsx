@@ -114,8 +114,8 @@ function BottomNavItem({
 
 export default function DashboardPage() {
   return (
-    <main className="min-h-dvh bg-surface-soft text-ink">
-      <section className="mx-auto w-full max-w-sm px-5 pb-24 pt-6">
+    <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
+      <section className="internal-scroll-y mx-auto h-full w-full max-w-sm px-5 pb-24 pt-6">
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-11 w-11 overflow-hidden rounded-full bg-black/10" />
