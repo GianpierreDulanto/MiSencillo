@@ -55,6 +55,7 @@
     "zustand": "^5.0.10"
   },
   "devDependencies": {
+    "@bubblewrap/cli": "^1.24.1",
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@tailwindcss/postcss": "^4",
