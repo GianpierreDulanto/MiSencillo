@@ -8,7 +8,7 @@ export default function EnableFaceIdPage() {
   return (
     <main className="box-border min-h-dvh bg-brand-violet px-5 pb-8 pt-10 text-white">
       <section className="mx-auto flex min-h-dvh w-full max-w-sm flex-col items-center">
-        <div className="mt-auto mb-25 grid h-60 w-60 place-items-center rounded-full bg-white/10">
+        <div className="mt-20 grid h-60 w-60 place-items-center rounded-full bg-white/10">
             <div className="grid h-40 w-40 place-items-center rounded-full bg-white/10">
             <div className="grid h-24 w-24 place-items-center rounded-full bg-brand-lime">
                 <Image
@@ -26,7 +26,7 @@ export default function EnableFaceIdPage() {
             Youre already to start using MiSencillo.
           </p>
 
-          <div className="mt-60 w-full rounded-3xl text-center text-ink shadow-2xl">
+          <div className="mt-auto mb-25 w-full rounded-3xl text-center text-ink shadow-2xl">
             <button
               type="button"
               onClick={() => router.replace('/dashboard')}
