@@ -1,11 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from 'react';
-import { Bell, CircleUserRound, Eye, Menu, MoveDown, MoveUp, ScanLine, WalletCards } from 'lucide-react';
 import ScanOverlay from '@/components/scan';
 import TransferOverlay from '@/components/transfer';
 import TransferDetailPage from '@/components/transfer-detail';
 import TransferSuccessPage from '@/components/transfer-success';
+import {
+  Bell,
+  CircleUserRound,
+  Eye,
+  Menu,
+  MoveDown,
+  MoveUp,
+  ScanLine,
+  WalletCards,
+} from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const transactions = [
   {
@@ -64,7 +74,9 @@ function ActionButton({
       onClick={onClick}
       className="flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-brand-lime px-4 text-lg font-semibold"
     >
-      <span className="grid h-10 w-10 place-items-center rounded-full bg-surface text-ink">{icon}</span>
+      <span className="grid h-10 w-10 place-items-center rounded-full bg-surface text-ink">
+        {icon}
+      </span>
       {label}
     </button>
   );
@@ -88,7 +100,9 @@ function TransactionItem({
   return (
     <article className="flex items-center justify-between rounded-3xl border border-black/10 bg-surface p-3.5">
       <div className="flex items-center gap-3">
-        <div className={`grid h-14 w-14 place-items-center rounded-full ${iconBg}`}>
+        <div
+          className={`grid h-14 w-14 place-items-center rounded-full ${iconBg}`}
+        >
           <TxIcon icon={icon} />
         </div>
         <div>
@@ -115,7 +129,9 @@ function BottomNavItem({
   active?: boolean;
 }) {
   return (
-    <li className={`flex flex-col items-center gap-2 ${active ? 'text-ink' : 'text-black/35'}`}>
+    <li
+      className={`flex flex-col items-center gap-2 ${active ? 'text-ink' : 'text-black/35'}`}
+    >
       {icon}
       <span className="text-sm font-semibold">{label}</span>
     </li>
@@ -149,7 +165,9 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3">
             <div className="h-11 w-11 overflow-hidden rounded-full bg-black/10" />
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight">Hi, Jennifer</h1>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Hi, Jennifer
+              </h1>
               <p className="text-sm text-black/50">Good Morning!</p>
             </div>
           </div>
@@ -169,7 +187,9 @@ export default function DashboardPage() {
           <Eye className="h-4 w-4" />
         </div>
 
-        <p className="mt-3 text-5xl font-semibold leading-none tracking-tight">$12,765.00</p>
+        <p className="mt-3 text-5xl font-semibold leading-none tracking-tight">
+          $12,765.00
+        </p>
 
         <div className="mt-8 flex items-center gap-3">
           <ActionButton
@@ -177,7 +197,10 @@ export default function DashboardPage() {
             label="Transfer"
             onClick={() => setTransferOpen(true)}
           />
-          <ActionButton icon={<MoveDown className="h-5 w-5" />} label="Receive" />
+          <ActionButton
+            icon={<MoveDown className="h-5 w-5" />}
+            label="Receive"
+          />
           <button
             type="button"
             className="grid h-14 w-14 shrink-0 place-items-center rounded-full border-[5px] border-brand-lime bg-surface"
@@ -188,15 +211,23 @@ export default function DashboardPage() {
         </div>
 
         <div className="mt-8 overflow-hidden rounded-3xl bg-linear-to-br from-brand-violet to-brand-violet/80 p-5 text-surface shadow-lg">
-          <h2 className="max-w-[16ch] text-2xl font-semibold leading-tight">Invite a friend and both earn cashback</h2>
-          <button type="button" className="mt-4 text-xl font-semibold text-brand-lime">
+          <h2 className="max-w-[16ch] text-2xl font-semibold leading-tight">
+            Invite a friend and both earn cashback
+          </h2>
+          <button
+            type="button"
+            className="mt-4 text-xl font-semibold text-brand-lime"
+          >
             Invite friends →
           </button>
         </div>
 
         <div className="mt-8 flex items-center justify-between">
           <h3 className="text-4xl font-semibold">Transactions</h3>
-          <button type="button" className="text-xl font-medium text-brand-violet">
+          <button
+            type="button"
+            className="text-xl font-medium text-brand-violet"
+          >
             See All
           </button>
         </div>
@@ -245,8 +276,19 @@ export default function DashboardPage() {
               <ScanLine className="h-6 w-6" />
             </button>
           </li>
-          <BottomNavItem label="My Cards" icon={<WalletCards className="h-8 w-8" />} />
-          <BottomNavItem label="Profile" icon={<CircleUserRound className="h-8 w-8" />} />
+          <BottomNavItem
+            label="My Cards"
+            icon={<WalletCards className="h-8 w-8" />}
+          />
+          <li>
+            <Link
+              href="/profile"
+              className="flex flex-col items-center gap-2 text-black/35"
+            >
+              <CircleUserRound className="h-8 w-8" />
+              <span className="text-sm font-semibold">Profile</span>
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -263,7 +305,9 @@ export default function DashboardPage() {
           onSuccess={handleTransferSuccess}
         />
       )}
-      {showSuccess && <TransferSuccessPage onComplete={handleSuccessComplete} />}
+      {showSuccess && (
+        <TransferSuccessPage onComplete={handleSuccessComplete} />
+      )}
     </main>
   );
 }
