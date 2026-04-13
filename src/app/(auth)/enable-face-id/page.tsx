@@ -21,7 +21,7 @@ export default function EnableFaceIdPage() {
             </div>
         </div>
 
-        <div className="mt-40 w-full rounded-3xl bg-white p-6 text-center text-ink shadow-2xl">
+        <div className="mt-auto mb-25 w-full rounded-3xl bg-white p-6 text-center text-ink shadow-2xl">
           <h1 className="pt-10 text-4xl font-semibold tracking-tight">Enable Face ID</h1>
           <p className="mb-10 mt-4 text-base text-black/55">
             Enabling Face ID will give you faster access to your information.
