@@ -1,4 +1,11 @@
+"use client";
+
+import { useState } from 'react';
 import { Bell, CircleUserRound, Eye, Menu, MoveDown, MoveUp, ScanLine, WalletCards } from 'lucide-react';
+import ScanOverlay from '@/components/scan';
+import TransferOverlay from '@/components/transfer';
+import TransferDetailPage from '@/components/transfer-detail';
+import TransferSuccessPage from '@/components/transfer-success';
 
 const transactions = [
   {
@@ -45,13 +52,16 @@ function TxIcon({ icon }: { icon: string }) {
 function ActionButton({
   icon,
   label,
+  onClick,
 }: {
   icon: React.ReactNode;
   label: string;
+  onClick?: () => void;
 }) {
   return (
     <button
       type="button"
+      onClick={onClick}
       className="flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-brand-lime px-4 text-lg font-semibold"
     >
       <span className="grid h-10 w-10 place-items-center rounded-full bg-surface text-ink">{icon}</span>
@@ -113,6 +123,25 @@ function BottomNavItem({
 }
 
 export default function DashboardPage() {
+  const [scanOpen, setScanOpen] = useState(false);
+  const [transferOpen, setTransferOpen] = useState(false);
+  const [selectedContact, setSelectedContact] = useState<any>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleSelectContact = (contact: any) => {
+    setSelectedContact(contact);
+    setTransferOpen(false);
+  };
+
+  const handleTransferSuccess = () => {
+    setShowSuccess(true);
+  };
+
+  const handleSuccessComplete = () => {
+    setShowSuccess(false);
+    setSelectedContact(null);
+  };
+
   return (
     <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
       <section className="internal-scroll-y mx-auto h-full w-full max-w-sm px-5 pb-24 pt-6">
@@ -143,7 +172,11 @@ export default function DashboardPage() {
         <p className="mt-3 text-5xl font-semibold leading-none tracking-tight">$12,765.00</p>
 
         <div className="mt-8 flex items-center gap-3">
-          <ActionButton icon={<MoveUp className="h-5 w-5" />} label="Transfer" />
+          <ActionButton
+            icon={<MoveUp className="h-5 w-5" />}
+            label="Transfer"
+            onClick={() => setTransferOpen(true)}
+          />
           <ActionButton icon={<MoveDown className="h-5 w-5" />} label="Receive" />
           <button
             type="button"
@@ -205,6 +238,7 @@ export default function DashboardPage() {
           <li className="-mt-2">
             <button
               type="button"
+              onClick={() => setScanOpen(true)}
               aria-label="Scan"
               className="grid h-14 w-14 place-items-center rounded-full bg-brand-lime text-ink shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
             >
@@ -215,6 +249,21 @@ export default function DashboardPage() {
           <BottomNavItem label="Profile" icon={<CircleUserRound className="h-8 w-8" />} />
         </ul>
       </nav>
+
+      <ScanOverlay open={scanOpen} onClose={() => setScanOpen(false)} />
+      <TransferOverlay
+        open={transferOpen}
+        onClose={() => setTransferOpen(false)}
+        onSelectContact={handleSelectContact}
+      />
+      {selectedContact && !showSuccess && (
+        <TransferDetailPage
+          contact={selectedContact}
+          onBack={() => setSelectedContact(null)}
+          onSuccess={handleTransferSuccess}
+        />
+      )}
+      {showSuccess && <TransferSuccessPage onComplete={handleSuccessComplete} />}
     </main>
   );
 }
