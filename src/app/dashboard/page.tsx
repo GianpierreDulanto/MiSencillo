@@ -224,12 +224,12 @@ export default function DashboardPage() {
 
         <div className="mt-8 flex items-center justify-between">
           <h3 className="text-4xl font-semibold">Transactions</h3>
-          <button
-            type="button"
+          <Link
+            href="/transactions"
             className="text-xl font-medium text-brand-violet"
           >
             See All
-          </button>
+          </Link>
         </div>
 
         <div className="mt-4 space-y-3">
@@ -259,16 +259,16 @@ export default function DashboardPage() {
             }
           />
           <li>
-          <Link
-            href="/insights"
-            className="flex flex-col items-center gap-2 text-black/35 transition-colors hover:text-ink"
+            <Link
+              href="/insights"
+              className="flex flex-col items-center gap-2 text-black/35 transition-colors hover:text-ink"
             >
-            <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
-          <span className="text-sm font-semibold">◫</span>
-      </div>
-        <span className="text-sm font-semibold">Insights</span>
-        </Link>
-        </li>
+              <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
+                <span className="text-sm font-semibold">◫</span>
+              </div>
+              <span className="text-sm font-semibold">Insights</span>
+            </Link>
+          </li>
           <li className="-mt-2">
             <button
               type="button"
