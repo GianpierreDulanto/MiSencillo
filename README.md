@@ -39,12 +39,14 @@ Guia para construir nuevas pantallas en el proyecto sin romper consistencia visu
 Si un bloque se repite en 2 o mas pantallas, extraerlo antes de continuar.
 
 Ejemplos ya existentes:
+
 - src/components/shared/close-link-button.tsx
 - src/components/shared/social-auth-buttons.tsx
 - src/components/shared/numeric-keypad.tsx
 - src/components/shared/pin-digit-boxes.tsx
 
 Checklist rapido:
+
 - Se repite layout o boton en varias pantallas
 - Misma estructura + cambio de texto menor
 - Misma logica de teclado, codigo o PIN
@@ -52,6 +54,7 @@ Checklist rapido:
 ## 5. Estilos: usar tokens, NO colores hardcodeados
 
 Obligatorio:
+
 - Usar clases semanticas de Tailwind ya definidas en globals
 - Priorizar tokens como:
   - bg-brand-violet
@@ -62,11 +65,13 @@ Obligatorio:
   - text-brand-violet
 
 No permitido:
+
 - Poner hex directo en componentes cuando exista token
   - Ejemplo incorrecto: color morado hardcodeado
   - Ejemplo correcto: bg-brand-violet
 
 Referencia de tema:
+
 - src/app/globals.css
 
 ## 6. Enrutamiento y navegacion
@@ -74,6 +79,7 @@ Referencia de tema:
 Para flujos guiados se usa principalmente reemplazo de ruta para evitar volver atras con estados intermedios.
 
 Patron recomendado:
+
 - router.replace("/ruta-siguiente")
 
 Usar Link para navegacion de texto o links secundarios.
@@ -81,6 +87,7 @@ Usar Link para navegacion de texto o links secundarios.
 ## 7. Flujo actual de registro y KYC
 
 Flujo principal implementado:
+
 - /get-started
 - /sign-up
 - /verify-phone
@@ -95,6 +102,7 @@ Flujo principal implementado:
 - /dashboard
 
 Login:
+
 - /sign-in
 - /enter-pin
 - /dashboard
@@ -120,6 +128,7 @@ Login:
 ## 10. Calidad antes de merge
 
 Checklist minimo:
+
 - No hay errores en Problems panel
 - No hay clases de Tailwind no canonicas cuando existe alternativa
 - No hay colores hex hardcodeados si ya existe token
@@ -130,14 +139,17 @@ Checklist minimo:
 ## 11. Problemas comunes
 
 Errores de at-rules en CSS de Tailwind v4:
+
 - El workspace ya tiene configuracion para evitar falsos positivos del linter CSS en VS Code.
 
 Import de globals.css en layout:
+
 - Si aparece error de tipos para side-effect import, revisar tipos globales y configuracion TypeScript del proyecto.
 
 ## 12. Regla de oro del equipo
 
 Antes de agregar codigo nuevo, revisar:
+
 - Si ya existe componente shared equivalente
 - Si el color ya existe en el sistema de tema
 - Si la ruta ya esta dentro del flujo definido

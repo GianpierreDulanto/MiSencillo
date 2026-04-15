@@ -13,9 +13,18 @@ import {
   MoveUp,
   ScanLine,
   WalletCards,
+  ShoppingCart, // <-- Nuevo ícono importado
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+
+interface Contact {
+  id: number;
+  name: string;
+  card: string;
+  bank: string;
+  avatar: string;
+}
 
 const transactions = [
   {
@@ -141,10 +150,10 @@ function BottomNavItem({
 export default function DashboardPage() {
   const [scanOpen, setScanOpen] = useState(false);
   const [transferOpen, setTransferOpen] = useState(false);
-  const [selectedContact, setSelectedContact] = useState<any>(null);
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSelectContact = (contact: any) => {
+  const handleSelectContact = (contact: Contact) => {
     setSelectedContact(contact);
     setTransferOpen(false);
   };
@@ -191,6 +200,7 @@ export default function DashboardPage() {
           $12,765.00
         </p>
 
+        {/* Primary Action Row */}
         <div className="mt-8 flex items-center gap-3">
           <ActionButton
             icon={<MoveUp className="h-5 w-5" />}
@@ -210,7 +220,16 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-3xl bg-linear-to-br from-brand-violet to-brand-violet/80 p-5 text-surface shadow-lg">
+        {/* NEW Important Purchase Button */}
+        <Link
+          href="/stores"
+          className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-brand-violet py-4 text-lg font-bold text-surface shadow-xl shadow-brand-violet/20 transition-transform active:scale-95"
+        >
+          <ShoppingCart className="h-6 w-6" />
+          Make a Purchase
+        </Link>
+
+        <div className="mt-6 overflow-hidden rounded-3xl bg-linear-to-br from-brand-violet to-brand-violet/80 p-5 text-surface shadow-lg">
           <h2 className="max-w-[16ch] text-2xl font-semibold leading-tight">
             Invite a friend and both earn cashback
           </h2>

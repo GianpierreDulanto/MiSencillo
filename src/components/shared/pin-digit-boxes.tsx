@@ -4,7 +4,11 @@ type PinDigitBoxesProps = {
   className?: string;
 };
 
-export function PinDigitBoxes({ value, length = 4, className = 'grid grid-cols-4 gap-3' }: PinDigitBoxesProps) {
+export function PinDigitBoxes({
+  value,
+  length = 4,
+  className = 'grid grid-cols-4 gap-3',
+}: PinDigitBoxesProps) {
   return (
     <div className={className}>
       {Array.from({ length }).map((_, index) => {

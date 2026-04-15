@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { tabData, fmt, TabKey } from "@/lib/utils/insights-data";
+import { tabData, fmt, TabKey } from '@/lib/utils/insights-data';
 
 export function InsightsChart({
   activeTab,
@@ -22,22 +22,15 @@ export function InsightsChart({
 
   return (
     <div className="mb-[18px] rounded-3xl bg-brand-violet p-4 pt-[18px] shadow-sm">
-      
       {/* --- Top Section --- */}
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <p className="mb-1 text-xs text-white/75">
-            Total Spending
-          </p>
-          <h2 className="m-0 text-2xl font-bold text-white">
-            {total}
-          </h2>
+          <p className="mb-1 text-xs text-white/75">Total Spending</p>
+          <h2 className="m-0 text-2xl font-bold text-white">{total}</h2>
         </div>
 
         <div className="text-right">
-          <p className="mb-0.5 text-[11px] text-white/60">
-            Selected
-          </p>
+          <p className="mb-0.5 text-[11px] text-white/60">Selected</p>
           <p className="m-0 text-[13px] font-semibold text-brand-lime">
             {selected}
           </p>
@@ -46,7 +39,6 @@ export function InsightsChart({
 
       {/* --- Chart Section --- */}
       <div className="relative" style={{ height: CHART_H }}>
-        
         {/* Bars */}
         <div className="relative z-10 flex h-full items-end justify-between gap-1.5">
           {data.labels.map((label, i) => {
@@ -61,7 +53,7 @@ export function InsightsChart({
               >
                 <div
                   className={`relative w-full overflow-hidden rounded-md transition-all duration-300 ${
-                    isActive ? "bg-brand-lime" : "bg-white/30 hover:bg-white/40"
+                    isActive ? 'bg-brand-lime' : 'bg-white/30 hover:bg-white/40'
                   }`}
                   style={{
                     height: `${hPct}%`,
@@ -73,7 +65,7 @@ export function InsightsChart({
                       className="absolute inset-0"
                       style={{
                         background:
-                          "repeating-linear-gradient(135deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 3px, transparent 3px, transparent 9px)",
+                          'repeating-linear-gradient(135deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 3px, transparent 3px, transparent 9px)',
                       }}
                     />
                   )}
@@ -82,8 +74,8 @@ export function InsightsChart({
                 <span
                   className={`mt-1.5 text-[11px] ${
                     isActive
-                      ? "font-semibold text-white"
-                      : "font-normal text-white/70"
+                      ? 'font-semibold text-white'
+                      : 'font-normal text-white/70'
                   }`}
                 >
                   {label}

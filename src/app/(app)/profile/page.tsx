@@ -113,11 +113,12 @@ export default function ProfilePage() {
         </div>
 
         {/* Menu Items */}
+
         <ul className="mt-6 space-y-2">
           <MenuItem
             icon={<IdCard className="h-5 w-5" />}
             label="Member ID"
-            href="/member-id"
+            href="/profile/member-id"
           />
           <MenuItem
             icon={<Settings className="h-5 w-5" />}
@@ -127,12 +128,12 @@ export default function ProfilePage() {
           <MenuItem
             icon={<ShieldCheck className="h-5 w-5" />}
             label="Privacy & Security"
-            href="/privacy-security"
+            href="/profile/privacy-security"
           />
           <MenuItem
             icon={<HelpCircle className="h-5 w-5" />}
             label="Help Center"
-            href="/help-center"
+            href="/profile/help-center"
           />
           <MenuItem
             icon={<LogOut className="h-5 w-5" />}

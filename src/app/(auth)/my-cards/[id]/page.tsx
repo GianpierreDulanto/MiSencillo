@@ -1,18 +1,49 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { ChevronLeft, MoreHorizontal, Snowflake, Lock, Settings, ChevronRight } from "lucide-react";
-import { CreditCard, type CardData } from "@/components/ui/credit-card";
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import {
+  ChevronLeft,
+  MoreHorizontal,
+  Snowflake,
+  Lock,
+  Settings,
+  ChevronRight,
+} from 'lucide-react';
+import { CreditCard, type CardData } from '@/components/ui/credit-card';
 
 // Base de datos simulada (En un proyecto real, esto vendría de tu API)
 const CARDS_DB: CardData[] = [
-  { id: 1, number: "5643 7890 3281 7865", name: "Jennifer Lopez", expiry: "03/28", network: "VISA", variant: "lime", href: "/my-cards/1" },
-  { id: 2, number: "5643 7890 3281 7865", name: "Jennifer Lopez", expiry: "03/28", network: "VISA", variant: "violet", href: "/my-cards/2" },
+  {
+    id: 1,
+    number: '5643 7890 3281 7865',
+    name: 'Jennifer Lopez',
+    expiry: '03/28',
+    network: 'VISA',
+    variant: 'lime',
+    href: '/my-cards/1',
+  },
+  {
+    id: 2,
+    number: '5643 7890 3281 7865',
+    name: 'Jennifer Lopez',
+    expiry: '03/28',
+    network: 'VISA',
+    variant: 'violet',
+    href: '/my-cards/2',
+  },
 ];
 
 // Sub-componente para las filas del menú (Regla #4: No repetir código HTML)
-function ActionRow({ icon, title, subtitle }: { icon: React.ReactNode, title: string, subtitle: string }) {
+function ActionRow({
+  icon,
+  title,
+  subtitle,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+}) {
   return (
     <button className="flex w-full items-center justify-between border-b border-black/5 py-4 transition-opacity last:border-0 active:opacity-70">
       <div className="flex items-center gap-4">
@@ -49,7 +80,6 @@ export default function CardDetailPage() {
   return (
     <main className="min-h-dvh bg-surface-soft text-ink pb-10">
       <div className="mx-auto max-w-sm px-5 pt-6">
-        
         {/* --- Header --- */}
         <header className="mb-8 flex items-center justify-between">
           <Link
@@ -80,23 +110,22 @@ export default function CardDetailPage() {
 
         {/* --- Opciones de la tarjeta --- */}
         <div className="rounded-[20px] bg-surface px-4 py-2 shadow-sm">
-          <ActionRow 
-            icon={<Snowflake className="h-5 w-5" />} 
-            title="Freeze card" 
-            subtitle="Block card temporarily" 
+          <ActionRow
+            icon={<Snowflake className="h-5 w-5" />}
+            title="Freeze card"
+            subtitle="Block card temporarily"
           />
-          <ActionRow 
-            icon={<Lock className="h-5 w-5" />} 
-            title="PIN & Security" 
-            subtitle="Unblock PIN or CVV and more" 
+          <ActionRow
+            icon={<Lock className="h-5 w-5" />}
+            title="PIN & Security"
+            subtitle="Unblock PIN or CVV and more"
           />
-          <ActionRow 
-            icon={<Settings className="h-5 w-5" />} 
-            title="Settings" 
-            subtitle="Remove or rename card & more" 
+          <ActionRow
+            icon={<Settings className="h-5 w-5" />}
+            title="Settings"
+            subtitle="Remove or rename card & more"
           />
         </div>
-
       </div>
     </main>
   );
