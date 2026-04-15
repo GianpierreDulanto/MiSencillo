@@ -258,14 +258,17 @@ export default function DashboardPage() {
               </div>
             }
           />
-          <BottomNavItem
-            label="Insights"
-            icon={
-              <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
-                <span className="text-sm font-semibold">◫</span>
-              </div>
-            }
-          />
+          <li>
+          <Link
+            href="/insights"
+            className="flex flex-col items-center gap-2 text-black/35 transition-colors hover:text-ink"
+            >
+            <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
+          <span className="text-sm font-semibold">◫</span>
+      </div>
+        <span className="text-sm font-semibold">Insights</span>
+        </Link>
+        </li>
           <li className="-mt-2">
             <button
               type="button"
@@ -276,10 +279,15 @@ export default function DashboardPage() {
               <ScanLine className="h-6 w-6" />
             </button>
           </li>
-          <BottomNavItem
-            label="My Cards"
-            icon={<WalletCards className="h-8 w-8" />}
-          />
+          <li>
+            <Link
+              href="/my-cards"
+              className="flex flex-col items-center gap-2 text-black/35 transition-colors hover:text-ink"
+            >
+              <WalletCards className="h-8 w-8" />
+              <span className="text-sm font-semibold">my-cards</span>
+            </Link>
+          </li>
           <li>
             <Link
               href="/profile"
