@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -14,7 +14,9 @@ export default function VerifyCodePage() {
   const [error, setError] = useState('');
 
   const appendDigit = (digit: string) => {
-    setCode((current) => (current.length < CODE_LENGTH ? `${current}${digit}` : current));
+    setCode((current) =>
+      current.length < CODE_LENGTH ? `${current}${digit}` : current
+    );
     setError('');
   };
 
@@ -41,7 +43,9 @@ export default function VerifyCodePage() {
 
         <section className="space-y-3">
           <h1 className="text-4xl font-semibold tracking-tight">Verify code</h1>
-          <p className="text-lg text-black/55">Enter the 4-digit code we sent you.</p>
+          <p className="text-lg text-black/55">
+            Enter the 4-digit code we sent you.
+          </p>
         </section>
 
         <section className="mt-8">

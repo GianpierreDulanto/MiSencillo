@@ -1,12 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { ChevronLeft, MoreHorizontal } from "lucide-react";
+import Link from 'next/link';
+import { ChevronLeft, MoreHorizontal } from 'lucide-react';
 
 export function InsightsHeader() {
   return (
     <div className="mb-[18px] flex items-center justify-between">
-      
       {/* --- BOTÓN BACK (Conectado al Dashboard) --- */}
       <Link
         href="/dashboard"
@@ -18,9 +17,7 @@ export function InsightsHeader() {
       </Link>
 
       {/* --- TÍTULO --- */}
-      <span className="text-[17px] font-semibold text-ink">
-        Insights
-      </span>
+      <span className="text-[17px] font-semibold text-ink">Insights</span>
 
       {/* --- BOTÓN MENÚ --- */}
       <button
@@ -31,7 +28,6 @@ export function InsightsHeader() {
         {/* MoreHorizontal es la versión profesional de tu '···' */}
         <MoreHorizontal className="h-5 w-5" />
       </button>
-      
     </div>
   );
 }

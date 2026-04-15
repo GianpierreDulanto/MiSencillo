@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
@@ -79,7 +79,9 @@ export default function GetStartedPage() {
 
         <section
           className="mb-10"
-          onTouchStart={(event) => onTouchStart(event.changedTouches[0].clientX)}
+          onTouchStart={(event) =>
+            onTouchStart(event.changedTouches[0].clientX)
+          }
           onTouchEnd={(event) => onTouchEnd(event.changedTouches[0].clientX)}
           onMouseDown={(event) => onTouchStart(event.clientX)}
           onMouseUp={(event) => onTouchEnd(event.clientX)}
@@ -89,7 +91,9 @@ export default function GetStartedPage() {
 
             <div className="relative w-full rounded-[26px] border border-black bg-white/90 p-6 shadow-[0_8px_28px_rgba(0,0,0,0.08)]">
               <p className="mb-3 text-sm text-black/60">Total Balance</p>
-              <p className="mb-5 text-5xl font-semibold leading-none tracking-tight">$12,765.00</p>
+              <p className="mb-5 text-5xl font-semibold leading-none tracking-tight">
+                $12,765.00
+              </p>
 
               <div className="flex items-center gap-3">
                 <button
@@ -117,9 +121,9 @@ export default function GetStartedPage() {
                   className="grid h-12 w-12 place-items-center rounded-full bg-[#d2f801] text-2xl font-medium"
                   aria-label="More actions"
                 >
-                    <span className='grid h-7 w-7 place-items-center rounded-full bg-white text-lg leading-none'>
-                        ≡
-                    </span>  
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-lg leading-none">
+                    ≡
+                  </span>
                 </button>
               </div>
             </div>

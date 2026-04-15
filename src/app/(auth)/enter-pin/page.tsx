@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,7 +9,9 @@ import { PinDigitBoxes } from '../../../components/shared/pin-digit-boxes';
 const PIN_LENGTH = 4;
 
 function shuffleDigits() {
-  return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].sort(() => Math.random() - 0.5);
+  return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].sort(
+    () => Math.random() - 0.5
+  );
 }
 
 export default function EnterPinPage() {
@@ -17,13 +19,20 @@ export default function EnterPinPage() {
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const shuffledDigits = useMemo(() => shuffleDigits(), []);
-  const keypadKeys = [...shuffledDigits.slice(0, 9), '*', shuffledDigits[9], 'backspace'];
+  const keypadKeys = [
+    ...shuffledDigits.slice(0, 9),
+    '*',
+    shuffledDigits[9],
+    'backspace',
+  ];
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (/^[0-9]$/.test(event.key)) {
         event.preventDefault();
-        setPin((current) => (current.length < PIN_LENGTH ? `${current}${event.key}` : current));
+        setPin((current) =>
+          current.length < PIN_LENGTH ? `${current}${event.key}` : current
+        );
         setError('');
         return;
       }
@@ -40,7 +49,9 @@ export default function EnterPinPage() {
   }, []);
 
   const appendDigit = (digit: string) => {
-    setPin((current) => (current.length < PIN_LENGTH ? `${current}${digit}` : current));
+    setPin((current) =>
+      current.length < PIN_LENGTH ? `${current}${digit}` : current
+    );
     setError('');
   };
 
@@ -66,8 +77,12 @@ export default function EnterPinPage() {
         </div>
 
         <section className="space-y-3">
-          <h1 className="text-4xl font-semibold tracking-tight">Enter your PIN</h1>
-          <p className="text-lg text-black/55">Set a 4-digit PIN for your MiSencillo card</p>
+          <h1 className="text-4xl font-semibold tracking-tight">
+            Enter your PIN
+          </h1>
+          <p className="text-lg text-black/55">
+            Set a 4-digit PIN for your MiSencillo card
+          </p>
         </section>
 
         <section className="mt-8">

@@ -8,7 +8,20 @@ type NumericKeypadProps = {
   className?: string;
 };
 
-const DEFAULT_KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', 'backspace'] as const;
+const DEFAULT_KEYS = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '*',
+  '0',
+  'backspace',
+] as const;
 
 export function NumericKeypad({
   keys = DEFAULT_KEYS,

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
@@ -10,12 +10,17 @@ export default function CaptureIdPage() {
     <main className="box-border min-h-dvh overflow-hidden bg-[radial-gradient(circle_at_top,#22314c_0%,#0f1724_55%,#090d14_100%)] px-5 py-6 text-white">
       <section className="mx-auto flex h-full min-h-0 w-full max-w-sm flex-col">
         <div className="mb-8 flex items-center justify-start">
-          <CloseLinkButton href="/upload-identity-proof" className="!text-white !font-bold" />
+          <CloseLinkButton
+            href="/upload-identity-proof"
+            className="!text-white !font-bold"
+          />
         </div>
 
         <div className="space-y-2">
           <h1 className="text-4xl font-semibold tracking-tight">National ID</h1>
-          <p className="text-base text-white/70">Take a photo of the front of your ID</p>
+          <p className="text-base text-white/70">
+            Take a photo of the front of your ID
+          </p>
         </div>
 
         <div className="mt-40 flex flex-1 items-center justify-center">

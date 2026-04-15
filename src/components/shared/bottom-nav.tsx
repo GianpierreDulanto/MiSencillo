@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ScanLine, WalletCards, CircleUserRound } from "lucide-react";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ScanLine, WalletCards, CircleUserRound } from 'lucide-react';
 
 // 1. Unificamos tu diseño visual con el Link de Next.js
 function NavItem({
@@ -21,7 +21,7 @@ function NavItem({
       <Link
         href={href}
         className={`flex flex-col items-center gap-2 transition-colors ${
-          isActive ? "text-ink" : "text-black/35 hover:text-ink/70"
+          isActive ? 'text-ink' : 'text-black/35 hover:text-ink/70'
         }`}
       >
         {icon}
@@ -40,16 +40,17 @@ export function BottomNav() {
     // Conservamos tus clases exactas, añadiendo z-50 para que siempre esté por encima del contenido
     <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-sm -translate-x-1/2 border-t border-black/10 bg-surface-soft px-6 py-3">
       <ul className="flex items-end justify-between">
-        
         {/* HOME */}
         <NavItem
           href="/dashboard"
-          isActive={pathname === "/dashboard"}
+          isActive={pathname === '/dashboard'}
           label="Home"
           icon={
             <div
               className={`grid h-8 w-8 place-items-center rounded-lg border-2 transition-colors ${
-                pathname === "/dashboard" ? "border-black/75" : "border-black/25"
+                pathname === '/dashboard'
+                  ? 'border-black/75'
+                  : 'border-black/25'
               }`}
             >
               <span className="text-sm font-semibold">⌂</span>
@@ -60,12 +61,12 @@ export function BottomNav() {
         {/* INSIGHTS */}
         <NavItem
           href="/insights"
-          isActive={pathname === "/insights"}
+          isActive={pathname === '/insights'}
           label="Insights"
           icon={
             <div
               className={`grid h-8 w-8 place-items-center rounded-lg border-2 transition-colors ${
-                pathname === "/insights" ? "border-black/75" : "border-black/25"
+                pathname === '/insights' ? 'border-black/75' : 'border-black/25'
               }`}
             >
               <span className="text-sm font-semibold">◫</span>
@@ -88,7 +89,7 @@ export function BottomNav() {
         {/* MY CARDS */}
         <NavItem
           href="/my-cards" // Ajusta esta ruta si es diferente en tu proyecto
-          isActive={pathname === "/my-cards"}
+          isActive={pathname === '/my-cards'}
           label="My Cards"
           icon={<WalletCards className="h-8 w-8" />}
         />
@@ -96,11 +97,10 @@ export function BottomNav() {
         {/* PROFILE */}
         <NavItem
           href="/profile"
-          isActive={pathname === "/profile"}
+          isActive={pathname === '/profile'}
           label="Profile"
           icon={<CircleUserRound className="h-8 w-8" />}
         />
-        
       </ul>
     </nav>
   );

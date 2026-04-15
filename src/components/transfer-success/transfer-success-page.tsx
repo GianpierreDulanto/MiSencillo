@@ -1,12 +1,8 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 
-function TransferSuccessPage({
-  onComplete,
-}: {
-  onComplete: () => void;
-}) {
+function TransferSuccessPage({ onComplete }: { onComplete: () => void }) {
   const [isAnimating, setIsAnimating] = useState(true);
 
   useEffect(() => {
@@ -42,13 +38,19 @@ function TransferSuccessPage({
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
           </svg>
         </div>
       </div>
 
       {/* Text */}
-      <h1 className="text-center text-5xl font-bold text-white mb-4">All Done!</h1>
+      <h1 className="text-center text-5xl font-bold text-white mb-4">
+        All Done!
+      </h1>
       <p className="max-w-xs text-center text-lg text-white/80">
         You have successfully transferred your money.
       </p>
