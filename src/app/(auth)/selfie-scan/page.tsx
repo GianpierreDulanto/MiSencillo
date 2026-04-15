@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
@@ -10,7 +10,10 @@ export default function SelfieScanPage() {
     <main className="box-border min-h-dvh overflow-hidden bg-[radial-gradient(circle_at_top,#362820_0%,#17120f_50%,#0c0c0c_100%)] px-5 py-6 text-white">
       <section className="mx-auto flex h-full min-h-0 w-full max-w-sm flex-col">
         <div className="mb-8 flex items-center justify-start">
-          <CloseLinkButton href="/enable-face-id" className="!text-white !font-bold" />
+          <CloseLinkButton
+            href="/enable-face-id"
+            className="!text-white !font-bold"
+          />
         </div>
 
         <div className="space-y-2">

@@ -1,9 +1,15 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../../../components/ui/select';
 
 const COUNTRIES = [
   { code: 'SG', name: 'Singapore', flag: '🇸🇬' },
@@ -25,9 +31,12 @@ export default function ResidenceCountryPage() {
         </div>
 
         <div className="space-y-3">
-          <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">Your country of primary residence</h1>
+          <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">
+            Your country of primary residence
+          </h1>
           <p className="text-base text-black/55">
-            The terms and services which apply to you will depend on your country of residence.
+            The terms and services which apply to you will depend on your
+            country of residence.
           </p>
         </div>
 

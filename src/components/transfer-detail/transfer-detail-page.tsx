@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -96,7 +96,9 @@ function TransferDetailPage({
                 />
               </div>
               <div className="flex-1">
-                <p className="text-base font-semibold text-ink">{contact.name}</p>
+                <p className="text-base font-semibold text-ink">
+                  {contact.name}
+                </p>
                 <p className="text-xs text-black/50">{contact.card}</p>
               </div>
             </div>
@@ -135,20 +137,28 @@ function TransferDetailPage({
           {showConfirm && (
             <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm px-4 py-6">
               <div className="w-full max-w-sm rounded-[32px] bg-white p-6 shadow-2xl">
-                <p className="mb-4 text-center text-xl font-semibold text-ink">Confirm Transfer</p>
+                <p className="mb-4 text-center text-xl font-semibold text-ink">
+                  Confirm Transfer
+                </p>
 
                 <div className="mb-6 rounded-2xl bg-black/5 p-4">
                   <div className="mb-4 flex items-center justify-between">
                     <span className="text-sm text-black/60">Amount</span>
-                    <span className="text-lg font-semibold text-ink">${formatAmount(amount)}</span>
+                    <span className="text-lg font-semibold text-ink">
+                      ${formatAmount(amount)}
+                    </span>
                   </div>
                   <div className="mb-4 flex items-center justify-between">
                     <span className="text-sm text-black/60">Recipient</span>
-                    <span className="text-lg font-semibold text-ink">{contact.name}</span>
+                    <span className="text-lg font-semibold text-ink">
+                      {contact.name}
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-black/60">Note</span>
-                    <span className="text-sm text-black/50">{note || 'None'}</span>
+                    <span className="text-sm text-black/50">
+                      {note || 'None'}
+                    </span>
                   </div>
                 </div>
 

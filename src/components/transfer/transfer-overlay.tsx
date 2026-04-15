@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
@@ -55,12 +55,7 @@ function ContactCard({
       className="flex w-full items-center gap-3 rounded-2xl border border-black/10 bg-white p-4 transition hover:bg-black/5"
     >
       <div className="relative h-12 w-12 overflow-hidden rounded-full bg-gradient-to-br from-brand-lime to-brand-violet shrink-0">
-        <Image
-          src={avatar}
-          alt={name}
-          fill
-          className="object-cover"
-        />
+        <Image src={avatar} alt={name} fill className="object-cover" />
       </div>
       <div className="text-left">
         <p className="text-base font-semibold text-ink">{name}</p>
@@ -152,7 +147,9 @@ function TransferOverlay({
 
           {/* Recent Payed Section */}
           <div className="mb-6">
-            <h3 className="mb-3 text-base font-semibold text-ink">Recent Payed</h3>
+            <h3 className="mb-3 text-base font-semibold text-ink">
+              Recent Payed
+            </h3>
             <div className="space-y-3">
               {recentPayed.map((contact) => (
                 <ContactCard
@@ -168,7 +165,9 @@ function TransferOverlay({
 
           {/* All Contact Section */}
           <div>
-            <h3 className="mb-3 text-base font-semibold text-ink">All Contact</h3>
+            <h3 className="mb-3 text-base font-semibold text-ink">
+              All Contact
+            </h3>
             <div className="space-y-3 pb-8">
               {allContacts.map((contact) => (
                 <ContactCard

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -22,9 +22,12 @@ export default function UploadIdentityProofPage() {
         </div>
 
         <div className="space-y-3">
-          <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">Upload a proof of your identity</h1>
+          <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">
+            Upload a proof of your identity
+          </h1>
           <p className="text-base text-black/55">
-            Take a picture of yourself and your photo ID, so we can make sure you are really you.
+            Take a picture of yourself and your photo ID, so we can make sure
+            you are really you.
           </p>
         </div>
 
@@ -44,7 +47,9 @@ export default function UploadIdentityProofPage() {
                 }`}
               >
                 <span className="text-base font-medium">{item.label}</span>
-                <span className={`h-5 w-5 rounded-full border ${active ? 'border-white/40 bg-white/20' : 'border-black/20'}`} />
+                <span
+                  className={`h-5 w-5 rounded-full border ${active ? 'border-white/40 bg-white/20' : 'border-black/20'}`}
+                />
               </button>
             );
           })}

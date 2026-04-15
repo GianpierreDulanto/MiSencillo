@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -14,7 +14,9 @@ export default function CreatePinPage() {
   const [error, setError] = useState('');
 
   const appendDigit = (digit: string) => {
-    setPin((current) => (current.length < PIN_LENGTH ? `${current}${digit}` : current));
+    setPin((current) =>
+      current.length < PIN_LENGTH ? `${current}${digit}` : current
+    );
     setError('');
   };
 
@@ -40,8 +42,12 @@ export default function CreatePinPage() {
         </div>
 
         <section className="space-y-3">
-          <h1 className="text-4xl font-semibold tracking-tight">Create your PIN</h1>
-          <p className="text-lg text-black/55">Set a 4-digit PIN for your account.</p>
+          <h1 className="text-4xl font-semibold tracking-tight">
+            Create your PIN
+          </h1>
+          <p className="text-lg text-black/55">
+            Set a 4-digit PIN for your account.
+          </p>
         </section>
 
         <section className="mt-8">
