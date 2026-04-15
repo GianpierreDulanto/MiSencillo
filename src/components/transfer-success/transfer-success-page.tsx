@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 function TransferSuccessPage({ onComplete }: { onComplete: () => void }) {
-  const [isAnimating, setIsAnimating] = useState(true);
+  const [isAnimating] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {

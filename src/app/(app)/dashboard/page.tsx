@@ -18,6 +18,14 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 
+interface Contact {
+  id: number;
+  name: string;
+  card: string;
+  bank: string;
+  avatar: string;
+}
+
 const transactions = [
   {
     id: 1,
@@ -142,10 +150,10 @@ function BottomNavItem({
 export default function DashboardPage() {
   const [scanOpen, setScanOpen] = useState(false);
   const [transferOpen, setTransferOpen] = useState(false);
-  const [selectedContact, setSelectedContact] = useState<any>(null);
+  const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSelectContact = (contact: any) => {
+  const handleSelectContact = (contact: Contact) => {
     setSelectedContact(contact);
     setTransferOpen(false);
   };

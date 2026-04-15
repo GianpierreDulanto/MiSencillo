@@ -6,6 +6,7 @@ import { X, Minus, Plus } from 'lucide-react';
 interface ProductDetailOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onConfirm: () => void; // Agrega esto
   productName: string;
   productPrice: string;
 }
@@ -13,6 +14,7 @@ interface ProductDetailOverlayProps {
 export default function ProductDetailOverlay({
   isOpen,
   onClose,
+  onConfirm,
   productName,
   productPrice,
 }: ProductDetailOverlayProps) {
@@ -76,7 +78,10 @@ export default function ProductDetailOverlay({
         </div>
 
         {/* Add to Cart Button */}
-        <button className="w-full py-5 bg-brand-violet text-surface rounded-full text-lg font-bold shadow-xl shadow-brand-violet/20 transition active:scale-95 hover:opacity-95">
+        <button
+          onClick={onConfirm} // Conecta el clic aquí
+          className="w-full py-5 bg-brand-violet text-surface rounded-full text-lg font-bold shadow-xl shadow-brand-violet/20"
+        >
           Add to Cart
         </button>
       </div>
