@@ -10,7 +10,7 @@ const storeCategories = [
     id: 'cat1',
     title: 'Restaurants',
     stores: [
-      { id: 'Mcdonalds', name: "McDonald's", sub: 'Fast Food' },
+      { id: 'mcdonalds', name: "McDonald's", sub: 'Fast Food' },
       { id: 'Tech', name: 'Tech Haven', sub: 'Electronics' },
     ],
   },
