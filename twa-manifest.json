@@ -3,7 +3,7 @@
   "host": "misencillo.netlify.app",
   "name": "MiSencillo",
   "launcherName": "MiSencillo",
-  "display": "fullscreen-sticky",
+  "display": "fullscreen",
   "themeColor": "#5A45FE",
   "themeColorDark": "#000000",
   "navigationColor": "#000000",
@@ -19,21 +19,21 @@
     "path": "/home/rodri/MiSencillo/android.keystore",
     "alias": "android"
   },
-  "appVersionName": "1",
-  "appVersionCode": 1,
+  "appVersionName": "7",
+  "appVersionCode": 7,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://misencillo.netlify.app/manifest.webmanifest",
-  "fallbackType": "customtabs",
+  "fallbackType": "webview",
   "features": {},
   "alphaDependencies": {
     "enabled": false
   },
-  "enableSiteSettingsShortcut": true,
+  "enableSiteSettingsShortcut": false,
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://misencillo.netlify.app/",
-  "minSdkVersion": 21,
+  "minSdkVersion": 24,
   "orientation": "portrait",
   "fingerprints": [],
   "additionalTrustedOrigins": [],
@@ -42,5 +42,5 @@
   "fileHandlers": [],
   "launchHandlerClientMode": "",
   "displayOverride": [],
-  "appVersion": "1"
+  "appVersion": "7"
 }
