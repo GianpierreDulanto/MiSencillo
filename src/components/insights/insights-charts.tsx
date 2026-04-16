@@ -1,6 +1,7 @@
 'use client';
 
 import { tabData, fmt, TabKey } from '@/lib/utils/insights-data';
+import { useLanguage } from '@/lib/i18n/context';
 
 export function InsightsChart({
   activeTab,
@@ -11,6 +12,7 @@ export function InsightsChart({
   activeIndex: number;
   setActiveIndex: (i: number) => void;
 }) {
+  const { t } = useLanguage();
   const data = tabData[activeTab];
   const max = Math.max(...data.values);
   const total = fmt(data.values.reduce((a, b) => a + b, 0));
@@ -25,12 +27,12 @@ export function InsightsChart({
       {/* --- Top Section --- */}
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <p className="mb-1 text-xs text-white/75">Total Spending</p>
+          <p className="mb-1 text-xs text-white/75">{t.total_spending}</p>
           <h2 className="m-0 text-2xl font-bold text-white">{total}</h2>
         </div>
 
         <div className="text-right">
-          <p className="mb-0.5 text-[11px] text-white/60">Selected</p>
+          <p className="mb-0.5 text-[11px] text-white/60">{t.selected}</p>
           <p className="m-0 text-[13px] font-semibold text-brand-lime">
             {selected}
           </p>

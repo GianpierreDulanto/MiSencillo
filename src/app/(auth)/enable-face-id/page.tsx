@@ -2,8 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useLanguage } from '@/lib/i18n/context';
+
 export default function EnableFaceIdPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="box-border min-h-dvh bg-brand-violet px-5 pb-8 pt-10 text-white">
@@ -23,10 +26,10 @@ export default function EnableFaceIdPage() {
 
         <div className="mt-auto mb-25 w-full rounded-3xl bg-white p-6 text-center text-ink shadow-2xl">
           <h1 className="pt-10 text-4xl font-semibold tracking-tight">
-            Enable Face ID
+            {t.enable_face_id}
           </h1>
           <p className="mb-10 mt-4 text-base text-black/55">
-            Enabling Face ID will give you faster access to your information.
+            {t.face_id_description}
           </p>
 
           <div className="mt-8 space-y-3">
@@ -35,15 +38,15 @@ export default function EnableFaceIdPage() {
               onClick={() => router.replace('/selfie-scan')}
               className="inline-flex h-14 w-full items-center justify-center rounded-xl bg-brand-lime text-lg font-semibold"
             >
-              Enable
+              {t.enable_face_id}
             </button>
 
             <button
               type="button"
-              onClick={() => router.replace('/create-pin')}
+              onClick={() => router.replace('/enter-pin?mode=signup')}
               className="inline-flex h-14 w-full items-center justify-center rounded-xl border border-black/10 bg-[#f5f5f5] text-base font-semibold text-black/75"
             >
-              Maybe Later
+              {t.skip}
             </button>
           </div>
         </div>

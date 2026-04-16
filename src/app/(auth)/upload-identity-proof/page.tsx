@@ -3,15 +3,17 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
+import { useLanguage } from '@/lib/i18n/context';
 
 const DOCUMENTS = [
-  { id: 'passport', label: 'Passport' },
-  { id: 'national-id', label: 'National ID' },
-  { id: 'driver-license', label: 'Driver License' },
+  { id: 'passport', labelKey: 'passport' },
+  { id: 'national-id', labelKey: 'national_id' },
+  { id: 'driver-license', labelKey: 'driver_license' },
 ];
 
 export default function UploadIdentityProofPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [selected, setSelected] = useState('national-id');
 
   return (
@@ -23,17 +25,16 @@ export default function UploadIdentityProofPage() {
 
         <div className="space-y-3">
           <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">
-            Upload a proof of your identity
+            {t.upload_identity}
           </h1>
-          <p className="text-base text-black/55">
-            Take a picture of yourself and your photo ID, so we can make sure
-            you are really you.
-          </p>
+          <p className="text-base text-black/55">{t.take_photo_id}</p>
         </div>
 
         <div className="mt-8 space-y-3">
           {DOCUMENTS.map((item) => {
             const active = selected === item.id;
+            const label =
+              (t[item.labelKey as keyof typeof t] as string) || item.labelKey;
 
             return (
               <button
@@ -46,7 +47,7 @@ export default function UploadIdentityProofPage() {
                     : 'border-black/10 bg-white text-black/85'
                 }`}
               >
-                <span className="text-base font-medium">{item.label}</span>
+                <span className="text-base font-medium">{label}</span>
                 <span
                   className={`h-5 w-5 rounded-full border ${active ? 'border-white/40 bg-white/20' : 'border-black/20'}`}
                 />
@@ -61,7 +62,7 @@ export default function UploadIdentityProofPage() {
             onClick={() => router.replace('/capture-id')}
             className="inline-flex h-14 w-full items-center justify-center rounded-xl bg-brand-lime text-lg font-semibold"
           >
-            Continue
+            {t.continue}
           </button>
         </div>
       </section>

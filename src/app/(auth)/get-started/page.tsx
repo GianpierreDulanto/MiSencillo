@@ -2,27 +2,28 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { useLanguage } from '@/lib/i18n/context';
 
 type Slide = {
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   imageSrc: string;
 };
 
 const SLIDES: Slide[] = [
   {
-    title: 'The Modern Way\nYour Money',
-    description: 'Spend, save, and grow their money all together in one place.',
+    titleKey: 'modern_way_money',
+    descriptionKey: 'move_fast_pay_easy',
     imageSrc: '/images/billetera-digital-3d-icon-png-download-10969247.webp',
   },
   {
-    title: 'Move Fast, Pay Easy',
-    description: 'Send and receive payments in seconds with total control.',
+    titleKey: 'move_fast_pay_easy',
+    descriptionKey: 'smart_insights_daily',
     imageSrc: '/images/billetera-digital-3d-icon-png-download-10969247.webp',
   },
   {
-    title: 'Smart Insights, Daily',
-    description: 'Track every movement and make better decisions every day.',
+    titleKey: 'smart_insights_daily',
+    descriptionKey: 'modern_way_money',
     imageSrc: '/images/billetera-digital-3d-icon-png-download-10969247.webp',
   },
 ];
@@ -30,10 +31,19 @@ const SLIDES: Slide[] = [
 const SWIPE_THRESHOLD = 45;
 
 export default function GetStartedPage() {
+  const { t } = useLanguage();
   const [activeSlide, setActiveSlide] = useState(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const activeData = useMemo(() => SLIDES[activeSlide], [activeSlide]);
+  const slideTitle = useMemo(
+    () => t[activeData.titleKey as keyof typeof t] as string,
+    [activeData.titleKey, t]
+  );
+  const slideDescription = useMemo(
+    () => t[activeData.descriptionKey as keyof typeof t] as string,
+    [activeData.descriptionKey, t]
+  );
 
   const goToNext = () => {
     setActiveSlide((prev) => Math.min(prev + 1, SLIDES.length - 1));
@@ -73,7 +83,7 @@ export default function GetStartedPage() {
             href="/sign-in"
             className="rounded-full border border-black/10 bg-[#f5f5f5] px-5 py-2 text-lg font-medium"
           >
-            Skip
+            {t.skip}
           </Link>
         </div>
 
@@ -90,7 +100,7 @@ export default function GetStartedPage() {
             <div className="absolute h-70 w-70 rounded-full bg-black/4" />
 
             <div className="relative w-full rounded-[26px] border border-black bg-white/90 p-6 shadow-[0_8px_28px_rgba(0,0,0,0.08)]">
-              <p className="mb-3 text-sm text-black/60">Total Balance</p>
+              <p className="mb-3 text-sm text-black/60">{t.total_balance}</p>
               <p className="mb-5 text-5xl font-semibold leading-none tracking-tight">
                 $12,765.00
               </p>
@@ -103,7 +113,7 @@ export default function GetStartedPage() {
                   <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-lg leading-none">
                     ↑
                   </span>
-                  Transfer
+                  {t.transfer_action}
                 </button>
 
                 <button
@@ -113,7 +123,7 @@ export default function GetStartedPage() {
                   <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-lg leading-none">
                     ↓
                   </span>
-                  Receive
+                  {t.receive}
                 </button>
 
                 <button
@@ -132,11 +142,11 @@ export default function GetStartedPage() {
 
         <section className="rounded-[30px] bg-white px-7 pb-7 pt-10 text-center shadow-[0_12px_36px_rgba(0,0,0,0.05)]">
           <h1 className="mb-4 mt-4 text-4xl font-semibold leading-[1.02] tracking-[-0.03em] whitespace-pre-line">
-            {activeData.title}
+            {slideTitle}
           </h1>
 
           <p className="mx-auto mb-10 max-w-70 text-m leading-relaxed text-black/70">
-            {activeData.description}
+            {slideDescription}
           </p>
 
           <div className="mb-8 flex items-center justify-center gap-3">
@@ -157,7 +167,7 @@ export default function GetStartedPage() {
             href="/sign-in"
             className="mt-5 inline-flex h-16 w-full items-center justify-center rounded-2xl bg-[#d2f801] text-xl font-semibold"
           >
-            Get Started
+            {t.continue}
           </Link>
         </section>
       </div>

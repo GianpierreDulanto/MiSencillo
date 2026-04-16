@@ -3,75 +3,120 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
 
-// Data structure organized by categories
-const storeCategories = [
+type StoreTranslations = {
+  restaurants: string;
+  fast_food: string;
+  tech_haven: string;
+  electronics: string;
+  supermarkets: string;
+  fresh_mart: string;
+  groceries: string;
+  daily_shop: string;
+  essentials: string;
+  eco_market: string;
+  organic: string;
+  quick_buy: string;
+  express_shop: string;
+  fashion_style: string;
+  velvet_co: string;
+  clothing: string;
+  trendly: string;
+  accessories: string;
+  sneaker_head: string;
+  shoes: string;
+  glamour: string;
+  beauty: string;
+  marketplace: string;
+};
+
+type Store = {
+  id: string | number;
+  name: string;
+  sub: string;
+};
+
+type StoreCategory = {
+  id: string;
+  title: string;
+  stores: Store[];
+};
+
+const storeCategories = (t: StoreTranslations): StoreCategory[] => [
   {
     id: 'cat1',
-    title: 'Restaurants',
+    title: t.restaurants,
     stores: [
-      { id: 'mcdonalds', name: "McDonald's", sub: 'Fast Food' },
-      { id: 'Tech', name: 'Tech Haven', sub: 'Electronics' },
+      { id: 'mcdonalds', name: "McDonald's", sub: t.fast_food },
+      { id: 'tech', name: t.tech_haven, sub: t.electronics },
     ],
   },
   {
     id: 'cat2',
-    title: 'Supermarkets',
+    title: t.supermarkets,
     stores: [
-      { id: 5, name: 'Fresh Mart', sub: 'Groceries' },
-      { id: 6, name: 'Daily Shop', sub: 'Essentials' },
-      { id: 7, name: 'Eco Market', sub: 'Organic' },
-      { id: 8, name: 'Quick Buy', sub: 'Express' },
+      { id: 5, name: t.fresh_mart, sub: t.groceries },
+      { id: 6, name: t.daily_shop, sub: t.essentials },
+      { id: 7, name: t.eco_market, sub: t.organic },
+      { id: 8, name: t.quick_buy, sub: t.express_shop },
     ],
   },
   {
     id: 'cat3',
-    title: 'Fashion & Style',
+    title: t.fashion_style,
     stores: [
-      { id: 9, name: 'Velvet Co', sub: 'Clothing' },
-      { id: 10, name: 'Trendly', sub: 'Accessories' },
-      { id: 11, name: 'Sneaker Head', sub: 'Shoes' },
-      { id: 12, name: 'Glamour', sub: 'Beauty' },
+      { id: 9, name: t.velvet_co, sub: t.clothing },
+      { id: 10, name: t.trendly, sub: t.accessories },
+      { id: 11, name: t.sneaker_head, sub: t.shoes },
+      { id: 12, name: t.glamour, sub: t.beauty },
     ],
   },
 ];
 
 export default function StoresMarketplace() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="h-dvh w-full overflow-hidden bg-surface-soft text-ink">
-      <section className="internal-scroll-y mx-auto h-full w-full max-w-sm pb-24 pt-6 overflow-y-auto">
-        <header className="px-5 flex items-center justify-between mb-8">
+      <section className="internal-scroll-y mx-auto h-full w-full max-w-sm overflow-y-auto pb-24 pt-6">
+        <header className="mb-8 flex items-center justify-between px-5">
           <button
             onClick={() => router.push('/dashboard')}
             className="grid h-11 w-11 place-items-center rounded-full bg-black/5"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-semibold">Marketplace</h1>
+
+          <h1 className="text-lg font-semibold">{t.marketplace}</h1>
+
           <div className="h-11 w-11" />
         </header>
 
         <div className="space-y-8">
-          {storeCategories.map((category) => (
+          {storeCategories(t).map((category) => (
             <div key={category.id}>
-              <h3 className="px-5 text-xl font-bold mb-4">{category.title}</h3>
-              <div className="flex gap-4 px-5 overflow-x-auto scrollbar-hide">
+              <h3 className="mb-4 px-5 text-xl font-bold">{category.title}</h3>
+
+              <div className="scrollbar-hide flex gap-4 overflow-x-auto px-5">
                 {category.stores.map((store) => (
                   <button
                     key={store.id}
-                    // Al hacer clic, Jennifer va al detalle de la tienda
                     onClick={() => router.push(`/stores/${store.id}`)}
-                    className="shrink-0 w-28 flex flex-col items-center group"
+                    className="group flex w-28 shrink-0 flex-col items-center"
                   >
-                    <div className="h-28 w-28 rounded-3xl bg-white border border-black/5 shadow-sm mb-3 flex items-center justify-center">
-                      {/* Color por defecto para el logo */}
+                    <div className="mb-3 flex h-28 w-28 items-center justify-center rounded-3xl border border-black/5 bg-white shadow-sm">
                       <div
-                        className={`h-12 w-12 rounded-full ${store.id === 'mcdonalds' ? 'bg-[#DB0007]' : 'bg-black/5'}`}
+                        className={`h-12 w-12 rounded-full ${
+                          store.id === 'mcdonalds'
+                            ? 'bg-[#DB0007]'
+                            : 'bg-black/5'
+                        }`}
                       />
                     </div>
-                    <p className="font-bold text-sm">{store.name}</p>
+
+                    <p className="text-sm font-bold">{store.name}</p>
                   </button>
                 ))}
               </div>

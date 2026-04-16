@@ -1,48 +1,55 @@
 'use client';
 
 import { ShoppingBag, Landmark, Utensils, MonitorPlay } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
+import { useCurrency } from '@/lib/i18n/currency-context';
+import { formatCurrency } from '@/lib/i18n/currencies';
 
 // Creamos una lista de datos. En el futuro, esto vendrá de tu API o de tu archivo insights-data.ts
-const CATEGORIES_DATA = [
+const CATEGORIES_DATA_BASE = [
   {
     id: 'shopping',
-    name: 'Shopping',
-    txCount: '50 transactions',
-    amount: '$1,456.00',
+    nameKey: 'shopping',
+    amount: 1456,
     icon: <ShoppingBag className="h-5 w-5" />,
-    // Usamos colores genéricos de Tailwind combinados con opacidad para los fondos de los íconos
     iconBg: 'bg-orange-100 text-orange-600',
   },
   {
     id: 'banking',
-    name: 'Banking',
-    txCount: '10 transactions',
-    amount: '$1,234.00',
+    nameKey: 'banking',
+    amount: 1234,
     icon: <Landmark className="h-5 w-5" />,
     iconBg: 'bg-indigo-100 text-indigo-600',
   },
   {
     id: 'food',
-    name: 'Food & Drink',
-    txCount: '24 transactions',
-    amount: '$450.00',
+    nameKey: 'food_drink',
+    amount: 450,
     icon: <Utensils className="h-5 w-5" />,
     iconBg: 'bg-green-100 text-green-600',
   },
   {
     id: 'subscriptions',
-    name: 'Subscriptions',
-    txCount: '4 transactions',
-    amount: '$65.00',
+    nameKey: 'subscriptions',
+    amount: 65,
     icon: <MonitorPlay className="h-5 w-5" />,
     iconBg: 'bg-blue-100 text-blue-600',
   },
 ];
 
 export function InsightsCategories() {
+  const { t } = useLanguage();
+  const { currency } = useCurrency();
+
+  const CATEGORIES_DATA = CATEGORIES_DATA_BASE.map((cat) => ({
+    ...cat,
+    name: t[cat.nameKey as keyof typeof t] as string,
+    txCount: `50 ${t.transactions}`,
+    displayAmount: formatCurrency(cat.amount, currency),
+  }));
   return (
     <div className="w-full pb-8">
-      <h3 className="mb-4 text-[17px] font-bold text-ink">Categories</h3>
+      <h3 className="mb-4 text-[17px] font-bold text-ink">{t.categories}</h3>
 
       <div className="flex flex-col gap-3">
         {/* Usamos .map() para no repetir el diseño de la tarjeta múltiples veces */}
@@ -67,7 +74,9 @@ export function InsightsCategories() {
             </div>
 
             {/* Monto */}
-            <span className="text-sm font-semibold text-ink">{cat.amount}</span>
+            <span className="text-sm font-semibold text-ink">
+              {cat.displayAmount}
+            </span>
           </div>
         ))}
       </div>

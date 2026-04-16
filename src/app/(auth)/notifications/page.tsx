@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { useLanguage } from '@/lib/i18n/context';
 
 type Notification = {
   id: number;
@@ -93,6 +94,7 @@ function NotificationItem({ item }: { item: Notification }) {
 
 export default function NotificationsPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'notifications' | 'messages'>(
     'notifications'
   );
@@ -110,7 +112,7 @@ export default function NotificationsPage() {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-semibold">Notifications</h1>
+          <h1 className="text-lg font-semibold">{t.notifications}</h1>
           <Link
             href="/notification-settings"
             aria-label="Notification settings"

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import MyCodeOverlay from '@/components/mycode';
+import { useLanguage } from '@/lib/i18n/context';
 
 function ScanOverlay({
   open,
@@ -11,6 +12,7 @@ function ScanOverlay({
   open: boolean;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
   const [showMyCode, setShowMyCode] = useState(false);
 
   if (!open) {
@@ -25,12 +27,14 @@ function ScanOverlay({
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close scanner"
+              aria-label={t.close_scanner}
               className="grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20"
             >
               ×
             </button>
-            <span className="text-sm font-semibold text-white">Scan QR</span>
+            <span className="text-sm font-semibold text-white">
+              {t.scan_qr}
+            </span>
             <div className="h-11 w-11" />
           </div>
 
@@ -39,7 +43,7 @@ function ScanOverlay({
               <div className="relative aspect-square w-full overflow-hidden rounded-[28px] bg-[#0e111a]">
                 <Image
                   src="/images/qr_sd.png"
-                  alt="QR Scanner"
+                  alt={t.qr_scanner_alt}
                   fill
                   className="object-cover"
                   priority
@@ -58,7 +62,7 @@ function ScanOverlay({
             >
               <Image
                 src="/images/image-galery.png"
-                alt="Gallery"
+                alt={t.gallery_alt}
                 width={24}
                 height={24}
                 className="h-6 w-6 invert"
@@ -72,12 +76,12 @@ function ScanOverlay({
             >
               <Image
                 src="/images/qr-code.png"
-                alt="My Code"
+                alt={t.my_code_alt}
                 width={20}
                 height={20}
                 className="h-5 w-5"
               />
-              My Code
+              {t.my_code}
             </button>
 
             <button
@@ -86,7 +90,7 @@ function ScanOverlay({
             >
               <Image
                 src="/images/storm.png"
-                alt="Gallery"
+                alt={t.gallery_alt}
                 width={24}
                 height={24}
                 className="h-6 w-6 invert"

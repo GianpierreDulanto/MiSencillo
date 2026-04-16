@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 
 export type CardVariant = 'lime' | 'violet';
 
@@ -91,6 +92,7 @@ function DecorativeRings({ variant }: { variant: CardVariant }) {
 
 export function CreditCard({ card }: { card: CardData }) {
   const router = useRouter();
+  const { t } = useLanguage();
   const isLime = card.variant === 'lime';
 
   return (
@@ -129,7 +131,7 @@ export function CreditCard({ card }: { card: CardData }) {
             <p
               className={`mt-0.5 text-xs font-medium ${isLime ? 'text-ink/70' : 'text-white/70'}`}
             >
-              EXP {card.expiry}
+              {t.exp} {card.expiry}
             </p>
           </div>
           <span

@@ -5,12 +5,14 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleUserRound,
+  Globe,
   Link2,
   ScrollText,
   SunMoon,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 
 function SectionLabel({ label }: { label: string }) {
   return (
@@ -47,6 +49,7 @@ function SettingsItem({
 
 export default function SettingsPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
@@ -61,47 +64,55 @@ export default function SettingsPage() {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
+          {t.settings}
           <h1 className="text-lg font-semibold">Settings</h1>
           <div className="h-11 w-11" />
         </header>
 
         {/* Accounts Section */}
-        <SectionLabel label="Accounts" />
+        <SectionLabel label={t.accounts} />
         <ul className="space-y-2">
           <SettingsItem
             icon={<CircleUserRound className="h-5 w-5" />}
-            label="Personal Details"
+            label={t.personal_details}
             href="/personal-details"
           />
           <SettingsItem
             icon={<Link2 className="h-5 w-5" />}
-            label="Linked Accounts"
+            label={t.linked_accounts}
             href="/linked-accounts"
           />
         </ul>
 
         {/* General Section */}
-        <SectionLabel label="General" />
+        <SectionLabel label={t.general} />
         <ul className="space-y-2">
           <SettingsItem
+            icon={<Globe className="h-5 w-5" />}
+            label={t.languages}
+            href="/languages"
+          />
+          <SettingsItem
             icon={<Bell className="h-5 w-5" />}
-            label="Notifications"
+            label={t.notifications}
             href="/notifications"
           />
           <SettingsItem
             icon={<SunMoon className="h-5 w-5" />}
-            label="Appearance"
+            label={t.appearance}
             href="/appearance"
           />
           <SettingsItem
             icon={<ScrollText className="h-5 w-5" />}
-            label="Agreements"
+            label={t.agreements}
             href="/agreements"
           />
         </ul>
 
         {/* Version */}
-        <p className="mt-12 text-center text-sm text-black/35">Version 1.1.0</p>
+        <p className="mt-12 text-center text-sm text-black/35">
+          {t.version} 1.1.0
+        </p>
       </section>
     </main>
   );

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 import {
   Search,
   ChevronLeft,
@@ -16,28 +17,29 @@ import {
 
 export default function HelpCenterPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { id: 'account', label: 'Account', icon: <User className="w-5 h-5" /> },
+    { id: 'account', label: t.account, icon: <User className="w-5 h-5" /> },
     {
       id: 'payments',
-      label: 'Payments',
+      label: t.payments,
       icon: <CreditCard className="w-5 h-5" />,
     },
     {
       id: 'security',
-      label: 'Security',
+      label: t.security,
       icon: <ShieldCheck className="w-5 h-5" />,
     },
-    { id: 'features', label: 'Features', icon: <Zap className="w-5 h-5" /> },
+    { id: 'features', label: t.features, icon: <Zap className="w-5 h-5" /> },
   ];
 
   const faqs = [
-    { question: 'How to change my PIN?', category: 'security' },
-    { question: 'Why is my transfer pending?', category: 'payments' },
-    { question: "How to invite Jennifer's friends?", category: 'features' },
-    { question: 'Can I use multiple devices?', category: 'account' },
+    { question: t.how_change_pin, category: 'security' },
+    { question: t.why_transfer_pending, category: 'payments' },
+    { question: t.how_invite_friends, category: 'features' },
+    { question: t.can_use_multiple_devices, category: 'account' },
   ];
 
   return (
@@ -47,11 +49,11 @@ export default function HelpCenterPage() {
         <button
           onClick={() => router.back()}
           className="grid h-11 w-11 place-items-center rounded-full bg-black/5 text-ink transition active:scale-95"
-          aria-label="Go back"
+          aria-label={t.go_back}
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
-        <h1 className="text-lg font-semibold">Help Center</h1>
+        <h1 className="text-lg font-semibold">{t.help_center}</h1>
         <div className="h-11 w-11" />
       </header>
 
@@ -59,9 +61,8 @@ export default function HelpCenterPage() {
         {/* Welcome Text */}
         <div className="mt-8 mb-6">
           <h2 className="text-2xl font-bold text-ink leading-tight">
-            Hi Jennifer,
+            {t.hi_jennifer_help}
             <br />
-            How can we help you?
           </h2>
         </div>
 
@@ -70,7 +71,7 @@ export default function HelpCenterPage() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-black/30 w-5 h-5" />
           <input
             type="text"
-            placeholder="Search for topics or questions..."
+            placeholder={t.search_topics}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white border-none shadow-sm text-sm focus:ring-2 focus:ring-brand-violet/20 transition-all outline-none"
@@ -95,7 +96,7 @@ export default function HelpCenterPage() {
         {/* Top Questions */}
         <div className="mb-8">
           <h3 className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4 px-1">
-            Top Questions
+            {t.top_questions}
           </h3>
           <div className="space-y-2">
             {faqs.map((faq, index) => (
@@ -114,19 +115,17 @@ export default function HelpCenterPage() {
 
         {/* Contact Support Section */}
         <div className="bg-brand-violet rounded-3xl p-6 text-white shadow-xl shadow-brand-violet/20">
-          <h4 className="font-bold mb-1">Still need help?</h4>
-          <p className="text-white/70 text-sm mb-6">
-            Our support team is available 24/7 to assist Jennifer.
-          </p>
+          <h4 className="font-bold mb-1">{t.still_need_help}</h4>
+          <p className="text-white/70 text-sm mb-6">{t.support_team_24_7}</p>
 
           <div className="space-y-3">
             <button className="w-full flex items-center gap-3 p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
               <MessageCircle className="w-5 h-5 text-brand-lime" />
-              <span className="text-sm font-bold">Live Chat</span>
+              <span className="text-sm font-bold">{t.live_chat}</span>
             </button>
             <button className="w-full flex items-center gap-3 p-3 bg-white/10 rounded-xl hover:bg-white/20 transition-colors">
               <Mail className="w-5 h-5 text-brand-lime" />
-              <span className="text-sm font-bold">Send an Email</span>
+              <span className="text-sm font-bold">{t.send_email}</span>
             </button>
           </div>
         </div>

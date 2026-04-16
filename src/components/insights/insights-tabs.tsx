@@ -1,6 +1,7 @@
 'use client';
 
 import { TabKey, tabData } from '@/lib/utils/insights-data';
+import { useLanguage } from '@/lib/i18n/context';
 
 export function InsightsTabs({
   activeTab,
@@ -11,10 +12,18 @@ export function InsightsTabs({
   setActiveTab: (t: TabKey) => void;
   setActiveIndex: (i: number) => void;
 }) {
+  const { t } = useLanguage();
+
   function changeTab(tab: TabKey) {
     setActiveTab(tab);
     setActiveIndex(tabData[tab].highlightIndex);
   }
+
+  const tabLabels: Record<TabKey, string> = {
+    weekly: t.weekly,
+    monthly: t.monthly,
+    yearly: t.yearly,
+  };
 
   return (
     <div
@@ -43,7 +52,7 @@ export function InsightsTabs({
             transition: 'background 0.2s',
           }}
         >
-          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          {tabLabels[tab].charAt(0).toUpperCase() + tabLabels[tab].slice(1)}
         </button>
       ))}
     </div>

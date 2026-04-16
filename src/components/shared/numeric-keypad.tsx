@@ -1,3 +1,5 @@
+'use client';
+
 type NumericKeypadProps = {
   keys?: readonly string[];
   onDigit: (digit: string) => void;
@@ -23,6 +25,8 @@ const DEFAULT_KEYS = [
   'backspace',
 ] as const;
 
+import { useLanguage } from '@/lib/i18n/context';
+
 export function NumericKeypad({
   keys = DEFAULT_KEYS,
   onDigit,
@@ -32,6 +36,8 @@ export function NumericKeypad({
   bottomClassName = 'bottom-6',
   className,
 }: NumericKeypadProps) {
+  const { t } = useLanguage();
+
   const resolvedClassName = className
     ? className
     : fixedToBottom
@@ -48,7 +54,7 @@ export function NumericKeypad({
               key={`backspace-${index}`}
               onClick={onBackspace}
               className="flex h-16 items-center justify-center rounded-2xl bg-[#fafafa] text-2xl font-medium text-black/70 transition active:scale-95"
-              aria-label="Delete last digit"
+              aria-label={t.delete_last_digit}
             >
               ⌫
             </button>
@@ -62,7 +68,7 @@ export function NumericKeypad({
               key={`star-${index}`}
               onClick={onStar}
               className="flex h-16 items-center justify-center rounded-2xl bg-[#fafafa] text-3xl font-medium text-black/75 transition active:scale-95"
-              aria-label="Star"
+              aria-label={t.star_button}
             >
               *
             </button>

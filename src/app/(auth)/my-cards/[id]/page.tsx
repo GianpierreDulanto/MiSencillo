@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 import {
   ChevronLeft,
   MoreHorizontal,
@@ -61,6 +62,7 @@ function ActionRow({
 }
 
 export default function CardDetailPage() {
+  const { t } = useLanguage();
   // 1. Extraemos el ID de la URL (ej. si estás en /my-cards/2, cardId será 2)
   const params = useParams();
   const cardId = Number(params.id);
@@ -72,7 +74,7 @@ export default function CardDetailPage() {
   if (!card) {
     return (
       <div className="flex h-dvh items-center justify-center bg-surface-soft">
-        <p>Tarjeta no encontrada</p>
+        <p>{t.card_not_found}</p>
       </div>
     );
   }
@@ -85,10 +87,11 @@ export default function CardDetailPage() {
           <Link
             href="/my-cards"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-surface shadow-sm transition-transform active:scale-95"
+            aria-label={t.back}
           >
             <ChevronLeft className="h-5 w-5 text-ink" />
           </Link>
-          <h1 className="text-lg font-semibold text-ink">Personal</h1>
+          <h1 className="text-lg font-semibold text-ink">{t.personal_card}</h1>
           <button className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-surface shadow-sm transition-transform active:scale-95">
             <MoreHorizontal className="h-5 w-5 text-ink" />
           </button>
@@ -96,7 +99,7 @@ export default function CardDetailPage() {
 
         {/* --- Balance --- */}
         <div className="mb-6">
-          <p className="mb-1 text-sm text-ink/60">Total Balance</p>
+          <p className="mb-1 text-sm text-ink/60">{t.total_balance}</p>
           <h2 className="text-[32px] font-bold leading-none tracking-tight">
             $12,765.00
           </h2>
@@ -112,18 +115,18 @@ export default function CardDetailPage() {
         <div className="rounded-[20px] bg-surface px-4 py-2 shadow-sm">
           <ActionRow
             icon={<Snowflake className="h-5 w-5" />}
-            title="Freeze card"
-            subtitle="Block card temporarily"
+            title={t.freeze_card}
+            subtitle={t.freeze_card_description}
           />
           <ActionRow
             icon={<Lock className="h-5 w-5" />}
-            title="PIN & Security"
-            subtitle="Unblock PIN or CVV and more"
+            title={t.pin_security}
+            subtitle={t.pin_security_description}
           />
           <ActionRow
             icon={<Settings className="h-5 w-5" />}
-            title="Settings"
-            subtitle="Remove or rename card & more"
+            title={t.card_settings}
+            subtitle={t.card_settings_description}
           />
         </div>
       </div>

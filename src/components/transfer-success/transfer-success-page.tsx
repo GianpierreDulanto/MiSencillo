@@ -1,8 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/lib/i18n/context';
 
 function TransferSuccessPage({ onComplete }: { onComplete: () => void }) {
+  const { t } = useLanguage();
   const [isAnimating] = useState(true);
 
   useEffect(() => {
@@ -49,10 +51,10 @@ function TransferSuccessPage({ onComplete }: { onComplete: () => void }) {
 
       {/* Text */}
       <h1 className="text-center text-5xl font-bold text-white mb-4">
-        All Done!
+        {t.all_done}
       </h1>
       <p className="max-w-xs text-center text-lg text-white/80">
-        You have successfully transferred your money.
+        {t.successfully_transferred}
       </p>
     </div>
   );

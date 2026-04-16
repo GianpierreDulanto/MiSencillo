@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
 import ProductDetailOverlay from '../product-detail-overlay';
 import TransferSuccessPage from '@/components/transfer-success'; // Importamos tu componente de éxito
 
 export default function McDonaldsStore() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [showSuccess, setShowSuccess] = useState(false);
   const [productOverlay, setProductOverlay] = useState({
     isOpen: false,
@@ -38,25 +40,25 @@ export default function McDonaldsStore() {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-semibold">McDonalds</h1>
+          <h1 className="text-lg font-semibold">McDonald&apos;s</h1>
           <div className="h-11 w-11" />
         </header>
 
         {/* Contenido de la tienda */}
         <div className="px-5 mb-8">
           <div className="rounded-[2rem] bg-[#DB0007] p-6 text-white shadow-xl">
-            <h2 className="text-2xl font-bold">Big Mac Day</h2>
-            <p className="opacity-90">Jennifer, your 10% discount is active!</p>
+            <h2 className="text-2xl font-bold">{t.big_mac_day}</h2>
+            <p className="opacity-90">{t.your_discount_active}</p>
           </div>
         </div>
 
         <div className="px-5">
-          <h3 className="text-xl font-bold mb-4">Burgers</h3>
+          <h3 className="text-xl font-bold mb-4">{t.burgers}</h3>
           <button
             onClick={() =>
               setProductOverlay({
                 isOpen: true,
-                name: 'Big Mac',
+                name: t.big_mac,
                 price: '$5.99',
               })
             }
@@ -64,7 +66,7 @@ export default function McDonaldsStore() {
           >
             <div className="h-16 w-16 bg-surface-soft rounded-2xl shrink-0" />
             <div className="text-left">
-              <p className="font-bold">Big Mac</p>
+              <p className="font-bold">{t.big_mac}</p>
               <p className="text-sm text-black/50">$5.99</p>
             </div>
           </button>

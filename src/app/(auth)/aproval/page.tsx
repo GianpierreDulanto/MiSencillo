@@ -2,8 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-export default function EnableFaceIdPage() {
+import { useLanguage } from '@/lib/i18n/context';
+
+export default function ApprovalPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="box-border min-h-dvh bg-brand-violet px-5 pb-8 pt-10 text-white">
@@ -22,11 +25,9 @@ export default function EnableFaceIdPage() {
         </div>
 
         <h1 className="pt-20 text-4xl font-semibold tracking-tight">
-          Youre approved!
+          {t.youre_approved}
         </h1>
-        <p className="mb-10 mt-4 text-m ffffff">
-          Youre already to start using MiSencillo.
-        </p>
+        <p className="mb-10 mt-4 text-m ffffff">{t.ready_to_start}</p>
 
         <div className="mt-auto mb-25 w-full rounded-3xl text-center text-ink shadow-2xl">
           <button
@@ -34,7 +35,7 @@ export default function EnableFaceIdPage() {
             onClick={() => router.replace('/dashboard')}
             className="inline-flex h-18 w-full items-center justify-center rounded-xl bg-brand-lime text-xl font-semibold"
           >
-            Done
+            {t.done}
           </button>
         </div>
       </section>

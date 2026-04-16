@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
+import { useLanguage } from '@/lib/i18n/context';
 
 export default function CaptureIdPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="box-border min-h-dvh overflow-hidden bg-[radial-gradient(circle_at_top,#22314c_0%,#0f1724_55%,#090d14_100%)] px-5 py-6 text-white">
@@ -17,10 +19,10 @@ export default function CaptureIdPage() {
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-4xl font-semibold tracking-tight">National ID</h1>
-          <p className="text-base text-white/70">
-            Take a photo of the front of your ID
-          </p>
+          <h1 className="text-4xl font-semibold tracking-tight">
+            {t.capture_national_id}
+          </h1>
+          <p className="text-base text-white/70">{t.take_photo_id}</p>
         </div>
 
         <div className="mt-40 flex flex-1 items-center justify-center">

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Plus, ChevronLeft } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
 import { CreditCard, type CardData } from '@/components/ui/credit-card';
 import { BottomNav } from '@/components/shared/bottom-nav';
 
@@ -27,6 +28,7 @@ const MY_CARDS_DATA: CardData[] = [
 ];
 
 export default function CardsPage() {
+  const { t } = useLanguage();
   return (
     <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
       <section className="internal-scroll-y mx-auto flex h-full w-full max-w-sm flex-col px-5 pb-24 pt-6">
@@ -34,12 +36,12 @@ export default function CardsPage() {
           <Link
             href="/dashboard"
             className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-surface shadow-sm transition-transform active:scale-95"
-            aria-label="Volver"
+            aria-label={t.back}
           >
             <ChevronLeft className="h-5 w-5 text-ink" />
           </Link>
 
-          <h1 className="text-lg font-semibold text-ink">My Cards</h1>
+          <h1 className="text-lg font-semibold text-ink">{t.my_cards}</h1>
 
           <Link
             href="/my-cards/add"

@@ -5,11 +5,13 @@ import { useState } from 'react';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
 import { NumericKeypad } from '../../../components/shared/numeric-keypad';
 import { PinDigitBoxes } from '../../../components/shared/pin-digit-boxes';
+import { useLanguage } from '@/lib/i18n/context';
 
 const CODE_LENGTH = 4;
 
 export default function VerifyCodePage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [code, setCode] = useState('');
   const [error, setError] = useState('');
 
@@ -27,7 +29,7 @@ export default function VerifyCodePage() {
 
   const handleDone = () => {
     if (code.length !== CODE_LENGTH) {
-      setError('Enter the 4-digit code.');
+      setError(t.enter_4digit_code);
       return;
     }
 
@@ -42,10 +44,10 @@ export default function VerifyCodePage() {
         </div>
 
         <section className="space-y-3">
-          <h1 className="text-4xl font-semibold tracking-tight">Verify code</h1>
-          <p className="text-lg text-black/55">
-            Enter the 4-digit code we sent you.
-          </p>
+          <h1 className="text-4xl font-semibold tracking-tight">
+            {t.verify_code}
+          </h1>
+          <p className="text-lg text-black/55">{t.enter_4digit_code}</p>
         </section>
 
         <section className="mt-8">
@@ -60,7 +62,7 @@ export default function VerifyCodePage() {
             onClick={handleDone}
             className="inline-flex h-16 w-full items-center justify-center rounded-2xl bg-brand-lime text-xl font-semibold transition active:scale-[0.99]"
           >
-            Done
+            {t.done}
           </button>
 
           <NumericKeypad

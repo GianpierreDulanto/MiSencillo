@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 import {
   ChevronLeft,
   IdCard,
@@ -73,21 +74,22 @@ function MenuItem({
 
 export default function ProfilePage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
-    <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
-      <section className="internal-scroll-y mx-auto h-full w-full max-w-sm px-5 pb-24 pt-6">
+    <main className="h-dvh overflow-hidden bg-surface-soft text-ink flex justify-center">
+      <section className="internal-scroll-y h-full max-w-sm px-5 pb-24 pt-6">
         {/* Header */}
         <header className="flex items-center justify-between">
           <button
             type="button"
             onClick={() => router.replace('/dashboard')}
-            aria-label="Go back"
+            aria-label={t.go_back}
             className="grid h-11 w-11 place-items-center rounded-full bg-black/5 text-ink"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-semibold">Profile</h1>
+          <h1 className="text-lg font-semibold">{t.profile_title}</h1>
           <div className="h-11 w-11" />
         </header>
 
@@ -101,14 +103,14 @@ export default function ProfilePage() {
               className="object-cover"
             />
           </div>
-          <p className="text-xl font-semibold">Jennifer Lopez</p>
-          <p className="text-sm text-black/50">Personal Account</p>
+          <p className="text-xl font-semibold">{t.jennifer_lopez}</p>
+          <p className="text-sm text-black/50">{t.personal_account}</p>
         </div>
 
         {/* Invite Banner */}
         <div className="mt-6 overflow-hidden rounded-3xl bg-brand-violet p-5 text-surface">
           <p className="text-lg font-semibold leading-snug">
-            Invite a friend and both earn cashback
+            {t.invite_friend_cashback}
           </p>
         </div>
 
@@ -117,27 +119,27 @@ export default function ProfilePage() {
         <ul className="mt-6 space-y-2">
           <MenuItem
             icon={<IdCard className="h-5 w-5" />}
-            label="Member ID"
+            label={t.member_id}
             href="/profile/member-id"
           />
           <MenuItem
             icon={<Settings className="h-5 w-5" />}
-            label="Settings"
+            label={t.settings}
             href="/settings"
           />
           <MenuItem
             icon={<ShieldCheck className="h-5 w-5" />}
-            label="Privacy & Security"
+            label={t.privacy_security}
             href="/profile/privacy-security"
           />
           <MenuItem
             icon={<HelpCircle className="h-5 w-5" />}
-            label="Help Center"
+            label={t.help_center}
             href="/profile/help-center"
           />
           <MenuItem
             icon={<LogOut className="h-5 w-5" />}
-            label="Log Out"
+            label={t.log_out}
             href="/sign-in"
             danger
           />
@@ -145,10 +147,10 @@ export default function ProfilePage() {
       </section>
 
       {/* Bottom Nav */}
-      <nav className="fixed bottom-0 left-1/2 w-full max-w-sm -translate-x-1/2 border-t border-black/10 bg-surface-soft px-6 py-3">
+      <nav className="fixed bottom-0 left-0 right-0 mx-auto max-w-sm border-t border-black/10 bg-surface-soft px-6 py-3">
         <ul className="flex items-end justify-between">
           <BottomNavItem
-            label="Home"
+            label={t.home}
             href="/dashboard"
             icon={
               <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
@@ -157,7 +159,7 @@ export default function ProfilePage() {
             }
           />
           <BottomNavItem
-            label="Insights"
+            label={t.insights}
             href="/insights"
             icon={
               <div className="grid h-8 w-8 place-items-center rounded-lg border-2 border-black/25">
@@ -168,20 +170,20 @@ export default function ProfilePage() {
           <li className="-mt-2">
             <Link
               href="/scan"
-              aria-label="Scan"
+              aria-label={t.scan_button}
               className="grid h-14 w-14 place-items-center rounded-full bg-brand-lime text-ink shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
             >
               <ScanLine className="h-6 w-6" />
             </Link>
           </li>
           <BottomNavItem
-            label="My Cards"
+            label={t.my_cards}
             href="/my-cards"
             icon={<WalletCards className="h-8 w-8" />}
           />
           <BottomNavItem
             active
-            label="Profile"
+            label={t.profile_title}
             href="/profile"
             icon={<CircleUserRound className="h-8 w-8" />}
           />

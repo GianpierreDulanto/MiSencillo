@@ -10,6 +10,7 @@ import {
   FileText,
   Lock,
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
 
 function SettingsItem({
   icon,
@@ -40,6 +41,7 @@ function SettingsItem({
 
 export default function NotificationSettingsPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="h-dvh overflow-hidden bg-surface-soft text-ink">
@@ -54,41 +56,38 @@ export default function NotificationSettingsPage() {
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-semibold">Notifications</h1>
+          <h1 className="text-lg font-semibold">{t.notifications}</h1>
           <div className="h-11 w-11" />
         </header>
 
         {/* Title + subtitle */}
         <div className="mt-8 space-y-2">
           <h2 className="text-3xl font-semibold tracking-tight">
-            Set how you get notified
+            {t.set_notifications}
           </h2>
-          <p className="text-base text-black/50">
-            Select the most convenient way to notify you of updates, messages,
-            and warnings.
-          </p>
+          <p className="text-base text-black/50">{t.notification_ways}</p>
         </div>
 
         {/* Options */}
         <ul className="mt-8 space-y-2">
           <SettingsItem
             icon={<Info className="h-5 w-5" />}
-            label="Info & Updates"
+            label={t.info_updates_title}
             href="/notification-settings/info-updates"
           />
           <SettingsItem
             icon={<CreditCard className="h-5 w-5" />}
-            label="Financial Activity"
+            label={t.financial_activity_title}
             href="/notification-settings/financial-activity"
           />
           <SettingsItem
             icon={<FileText className="h-5 w-5" />}
-            label="Non Financial Activity"
+            label={t.non_financial_activity_title}
             href="/notification-settings/non-financial-activity"
           />
           <SettingsItem
             icon={<Lock className="h-5 w-5" />}
-            label="Security"
+            label={t.security_settings_title}
             href="/notification-settings/security"
           />
         </ul>

@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { PwaRegister } from '@/components/shared/pwa-register';
+import { LanguageProvider } from '@/lib/i18n/context';
+import { CurrencyProvider } from '@/lib/i18n/currency-context';
 
 export const metadata: Metadata = {
   title: 'MiSencillo',
@@ -30,8 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <PwaRegister />
-        {children}
+        <LanguageProvider>
+          <CurrencyProvider>
+            <PwaRegister />
+            {children}
+          </CurrencyProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

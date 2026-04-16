@@ -1,3 +1,7 @@
+'use client';
+
+import { useLanguage } from '@/lib/i18n/context';
+
 type SocialAuthButtonsProps = {
   mode: 'sign-in' | 'sign-up';
 };
@@ -38,29 +42,35 @@ function GoogleIcon() {
 }
 
 export function SocialAuthButtons({ mode }: SocialAuthButtonsProps) {
-  const title = mode === 'sign-in' ? 'Or sign in with' : 'Or sign up with';
+  const { t } = useLanguage();
+  const displayTitle =
+    mode === 'sign-in'
+      ? t.or_continue_with_sign_in
+      : t.or_continue_with_sign_up;
 
   return (
     <>
       <div className="flex items-center justify-center gap-3 pt-1">
-        <span className="text-sm text-black/70">{title}</span>
+        <span className="text-sm text-black/70">{displayTitle}</span>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <button
           type="button"
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-black/15 bg-white text-lg font-medium text-ink transition hover:bg-black/4 active:scale-95"
+          aria-label={`${t.continue_with_apple} - ${t.social_apple}`}
         >
           <AppleIcon />
-          Apple
+          {t.social_apple}
         </button>
 
         <button
           type="button"
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-black/15 bg-white text-lg font-medium text-ink transition hover:bg-black/4 active:scale-95"
+          aria-label={`${t.continue_with_google} - ${t.social_google}`}
         >
           <GoogleIcon />
-          Google
+          {t.social_google}
         </button>
       </div>
     </>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '@/lib/i18n/context';
 
 const recentPayed = [
   {
@@ -74,6 +75,7 @@ function TransferOverlay({
   onClose: () => void;
   onSelectContact: (contact: (typeof recentPayed)[0]) => void;
 }) {
+  const { t } = useLanguage();
   const [startY, setStartY] = useState(0);
   const [currentY, setCurrentY] = useState(0);
 
@@ -121,12 +123,14 @@ function TransferOverlay({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-black/10 px-5 pb-4">
           <div>
-            <p className="text-xl font-semibold text-ink">Choose Recipients</p>
+            <p className="text-xl font-semibold text-ink">
+              {t.choose_recipients}
+            </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close transfer"
+            aria-label={t.close_transfer}
             className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-black/5 text-ink transition hover:bg-black/10"
           >
             ×
@@ -140,7 +144,7 @@ function TransferOverlay({
             <span className="text-lg text-black/40">🔍</span>
             <input
               type="text"
-              placeholder="Search contact"
+              placeholder={t.search_contact}
               className="w-full bg-transparent text-base text-ink placeholder-black/50 outline-none"
             />
           </div>
@@ -148,7 +152,7 @@ function TransferOverlay({
           {/* Recent Payed Section */}
           <div className="mb-6">
             <h3 className="mb-3 text-base font-semibold text-ink">
-              Recent Payed
+              {t.recent_payed}
             </h3>
             <div className="space-y-3">
               {recentPayed.map((contact) => (
@@ -166,7 +170,7 @@ function TransferOverlay({
           {/* All Contact Section */}
           <div>
             <h3 className="mb-3 text-base font-semibold text-ink">
-              All Contact
+              {t.all_contact}
             </h3>
             <div className="space-y-3 pb-8">
               {allContacts.map((contact) => (

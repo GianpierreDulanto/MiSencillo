@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ScanLine, WalletCards, CircleUserRound } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/context';
 
 // 1. Unificamos tu diseño visual con el Link de Next.js
 function NavItem({
@@ -33,6 +34,7 @@ function NavItem({
 
 // 2. Componente Principal
 export function BottomNav() {
+  const { t } = useLanguage();
   // Obtenemos la ruta actual para saber qué botón encender
   const pathname = usePathname();
 
@@ -44,7 +46,7 @@ export function BottomNav() {
         <NavItem
           href="/dashboard"
           isActive={pathname === '/dashboard'}
-          label="Home"
+          label={t.home}
           icon={
             <div
               className={`grid h-8 w-8 place-items-center rounded-lg border-2 transition-colors ${
@@ -62,7 +64,7 @@ export function BottomNav() {
         <NavItem
           href="/insights"
           isActive={pathname === '/insights'}
-          label="Insights"
+          label={t.insights}
           icon={
             <div
               className={`grid h-8 w-8 place-items-center rounded-lg border-2 transition-colors ${
@@ -79,7 +81,7 @@ export function BottomNav() {
           <button
             type="button"
             // onClick={() => setScanOpen(true)} // Descomenta esto cuando manejes el estado global del Scan
-            aria-label="Scan"
+            aria-label={t.scan_button}
             className="grid h-14 w-14 place-items-center rounded-full bg-brand-lime text-ink shadow-[0_8px_20px_rgba(0,0,0,0.16)] transition-transform active:scale-95"
           >
             <ScanLine className="h-6 w-6" />
@@ -90,7 +92,7 @@ export function BottomNav() {
         <NavItem
           href="/my-cards" // Ajusta esta ruta si es diferente en tu proyecto
           isActive={pathname === '/my-cards'}
-          label="My Cards"
+          label={t.my_cards}
           icon={<WalletCards className="h-8 w-8" />}
         />
 
@@ -98,7 +100,7 @@ export function BottomNav() {
         <NavItem
           href="/profile"
           isActive={pathname === '/profile'}
-          label="Profile"
+          label={t.profile}
           icon={<CircleUserRound className="h-8 w-8" />}
         />
       </ul>

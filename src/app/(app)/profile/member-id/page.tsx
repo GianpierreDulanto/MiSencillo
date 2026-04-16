@@ -2,11 +2,13 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 import { ArrowLeft, Copy, Share2 } from 'lucide-react';
 import Image from 'next/image';
 
 export default function MemberIdPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   // Mock ID (In a real scenario, this would come from your backend or global state)
   const memberId = 'MS-8247-A765';
@@ -23,12 +25,12 @@ export default function MemberIdPage() {
         <button
           onClick={() => router.back()}
           className="p-2 hover:bg-surface-soft rounded-full transition-colors"
-          aria-label="Go back"
+          aria-label={t.go_back}
         >
           <ArrowLeft className="text-ink w-6 h-6" />
         </button>
         <h1 className="text-ink font-bold text-xl text-center flex-1">
-          My Identity
+          {t.my_identity}
         </h1>
         <div className="w-10" /> {/* Spacer to keep the title centered */}
       </div>
@@ -47,10 +49,10 @@ export default function MemberIdPage() {
         </div>
 
         <h2 className="text-ink font-bold text-2xl mb-1 text-center">
-          Jennifer Lopez
+          {t.jennifer_lopez}
         </h2>
         <p className="text-ink/60 text-sm mb-8 text-center uppercase tracking-widest font-medium">
-          Premium Member
+          {t.premium_member}
         </p>
 
         {/* QR Code */}
@@ -68,7 +70,7 @@ export default function MemberIdPage() {
         <div className="w-full bg-surface-soft rounded-2xl p-4 flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-[10px] text-ink/40 font-bold uppercase tracking-wider">
-              Member ID
+              {t.member_id}
             </span>
             <span className="text-ink font-mono font-bold text-lg">
               {memberId}
@@ -77,7 +79,7 @@ export default function MemberIdPage() {
           <button
             onClick={handleCopy}
             className="p-3 bg-white rounded-xl shadow-sm hover:scale-105 active:scale-95 transition-all text-brand-violet"
-            aria-label="Copy Member ID"
+            aria-label={t.copy_member_id}
           >
             <Copy className="w-5 h-5" />
           </button>
@@ -88,10 +90,10 @@ export default function MemberIdPage() {
       <div className="w-full max-w-md mt-8 grid grid-cols-2 gap-4">
         <button className="flex items-center justify-center gap-2 py-4 bg-brand-violet text-white rounded-2xl font-bold shadow-lg shadow-brand-violet/20 hover:opacity-90 transition-opacity">
           <Share2 className="w-5 h-5" />
-          Share
+          {t.share}
         </button>
         <button className="flex items-center justify-center gap-2 py-4 bg-brand-lime text-ink rounded-2xl font-bold shadow-lg shadow-brand-lime/20 hover:opacity-90 transition-opacity">
-          Download
+          {t.download}
         </button>
       </div>
     </main>

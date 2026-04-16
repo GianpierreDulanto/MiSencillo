@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../../components/ui/select';
+import { useLanguage } from '@/lib/i18n/context';
 
 const COUNTRIES = [
   { code: 'SG', name: 'Singapore', flag: '🇸🇬' },
@@ -21,6 +22,7 @@ const COUNTRIES = [
 
 export default function ResidenceCountryPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [countryCode, setCountryCode] = useState('SG');
 
   return (
@@ -32,19 +34,18 @@ export default function ResidenceCountryPage() {
 
         <div className="space-y-3">
           <h1 className="text-[42px] font-semibold leading-[1.05] tracking-tight">
-            Your country of primary residence
+            {t.country_of_residence}
           </h1>
-          <p className="text-base text-black/55">
-            The terms and services which apply to you will depend on your
-            country of residence.
-          </p>
+          <p className="text-base text-black/55">{t.primary_residence}</p>
         </div>
 
         <div className="mt-10 space-y-2">
-          <label className="text-m font-medium text-black/60">Country</label>
+          <label className="text-m font-medium text-black/60">
+            {t.select_country}
+          </label>
           <Select value={countryCode} onValueChange={setCountryCode}>
             <SelectTrigger className="border-black/10">
-              <SelectValue placeholder="Select country" />
+              <SelectValue placeholder={t.select_country} />
             </SelectTrigger>
             <SelectContent>
               {COUNTRIES.map((country) => (
@@ -57,7 +58,7 @@ export default function ResidenceCountryPage() {
         </div>
 
         <p className="mt-85 mb-5 text-center text-sm text-black/45">
-          By registering, you accept our Terms of Use and Privacy Policy.
+          {t.terms_acceptance}
         </p>
 
         <button
@@ -65,7 +66,7 @@ export default function ResidenceCountryPage() {
           onClick={() => router.replace('/upload-identity-proof')}
           className="inline-flex h-14 w-full items-center justify-center rounded-xl bg-brand-lime text-lg font-semibold"
         >
-          Continue
+          {t.continue}
         </button>
       </section>
     </main>

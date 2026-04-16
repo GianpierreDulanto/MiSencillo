@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/lib/i18n/context';
 import {
   ArrowLeft,
   ShieldCheck,
@@ -14,6 +15,7 @@ import {
 
 export default function PrivacySecurityPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   // State for interactive toggles
   const [biometricsEnabled, setBiometricsEnabled] = useState(true);
@@ -44,12 +46,12 @@ export default function PrivacySecurityPage() {
         <button
           onClick={() => router.back()}
           className="p-2 hover:bg-surface-soft rounded-full transition-colors"
-          aria-label="Go back"
+          aria-label={t.go_back}
         >
           <ArrowLeft className="text-ink w-6 h-6" />
         </button>
         <h1 className="text-ink font-bold text-xl text-center flex-1">
-          Privacy & Security
+          {t.privacy_security}
         </h1>
         <div className="w-10" />
       </div>
@@ -61,9 +63,9 @@ export default function PrivacySecurityPage() {
             <ShieldCheck className="w-8 h-8 text-brand-lime" />
           </div>
           <div>
-            <h2 className="font-bold text-lg">Account Protected</h2>
+            <h2 className="font-bold text-lg">{t.account_protected_desc}</h2>
             <p className="text-white/80 text-sm">
-              Your security settings are up to date, Jennifer.
+              {t.security_settings_up_to_date}
             </p>
           </div>
         </div>
@@ -71,7 +73,7 @@ export default function PrivacySecurityPage() {
         {/* Biometrics Section */}
         <section className="space-y-3">
           <h3 className="text-ink/40 font-bold text-xs uppercase tracking-widest px-2">
-            Access Control
+            {t.access_control}
           </h3>
           <div className="bg-white rounded-3xl p-2 border border-surface-soft shadow-sm">
             <div className="flex items-center justify-between p-4 border-b border-surface-soft/50">
@@ -80,9 +82,11 @@ export default function PrivacySecurityPage() {
                   <Fingerprint className="text-brand-violet w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-ink font-bold text-sm">Biometric Login</p>
+                  <p className="text-ink font-bold text-sm">
+                    {t.biometric_login}
+                  </p>
                   <p className="text-ink/50 text-xs">
-                    Use Face ID or Fingerprint
+                    {t.use_face_id_fingerprint}
                   </p>
                 </div>
               </div>
@@ -102,8 +106,12 @@ export default function PrivacySecurityPage() {
                   <ShieldCheck className="text-brand-violet w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-ink font-bold text-sm">Two-Factor Auth</p>
-                  <p className="text-ink/50 text-xs">Extra layer of security</p>
+                  <p className="text-ink font-bold text-sm">
+                    {t.two_factor_auth}
+                  </p>
+                  <p className="text-ink/50 text-xs">
+                    {t.extra_layer_security}
+                  </p>
                 </div>
               </div>
               <button
@@ -121,7 +129,7 @@ export default function PrivacySecurityPage() {
         {/* General Security Section */}
         <section className="space-y-3">
           <h3 className="text-ink/40 font-bold text-xs uppercase tracking-widest px-2">
-            Privacy Settings
+            {t.privacy_settings}
           </h3>
           <div className="bg-white rounded-3xl p-2 border border-surface-soft shadow-sm">
             {securityItems.map((item) => (
@@ -149,14 +157,15 @@ export default function PrivacySecurityPage() {
         <div className="bg-surface-soft rounded-3xl p-6 border border-brand-violet/10">
           <div className="flex items-center gap-3 mb-2">
             <Eye className="w-5 h-5 text-brand-violet" />
-            <h4 className="font-bold text-ink text-sm">Data Transparency</h4>
+            <h4 className="font-bold text-ink text-sm">
+              {t.data_transparency}
+            </h4>
           </div>
           <p className="text-ink/60 text-xs leading-relaxed">
-            MiSencillo uses end-to-end encryption. Your financial data is never
-            shared with third parties without your explicit consent.
+            {t.encryption_message}
           </p>
           <button className="text-brand-violet text-xs font-bold mt-4 underline decoration-2 underline-offset-4">
-            Read Full Privacy Policy
+            {t.read_full_privacy_policy}
           </button>
         </div>
       </div>

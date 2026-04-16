@@ -4,6 +4,9 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, Shield, Calendar } from 'lucide-react';
 import { NumericKeypad } from '@/components/shared/numeric-keypad';
+import { useLanguage } from '@/lib/i18n/context';
+import { useCurrency } from '@/lib/i18n/currency-context';
+import { formatCurrency } from '@/lib/i18n/currencies';
 
 function TransferDetailPage({
   contact,
@@ -20,6 +23,8 @@ function TransferDetailPage({
   onBack: () => void;
   onSuccess: () => void;
 }) {
+  const { t } = useLanguage();
+  const { currency } = useCurrency();
   const [amount, setAmount] = useState('0');
   const [note, setNote] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
@@ -45,12 +50,9 @@ function TransferDetailPage({
     });
   };
 
-  const formatAmount = (value: string) => {
-    const num = parseInt(value, 10);
-    return new Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(num / 100);
+  const displayAmount = () => {
+    const num = parseInt(amount, 10);
+    return formatCurrency(num / 100, currency);
   };
 
   return (
@@ -64,7 +66,7 @@ function TransferDetailPage({
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
-        <p className="text-xl font-semibold">Transfer Money</p>
+        <p className="text-xl font-semibold">{t.transfer_money}</p>
         <div className="grid h-10 w-10 place-items-center rounded-full bg-brand-lime">
           <Shield className="h-6 w-6 text-violet-600" />
         </div>
@@ -76,11 +78,11 @@ function TransferDetailPage({
         <div className="flex-1 rounded-b-[40px] bg-white px-5 pb-8 pt-8">
           {/* Amount Section */}
           <div className="mb-8">
-            <p className="text-center text-sm text-black/50">Enter amount</p>
+            <p className="text-center text-sm text-black/50">
+              {t.enter_amount}
+            </p>
             <div className="mt-4 text-center">
-              <p className="text-6xl font-bold text-ink">
-                ${formatAmount(amount)}
-              </p>
+              <p className="text-6xl font-bold text-ink">{displayAmount()}</p>
             </div>
           </div>
 
@@ -108,7 +110,7 @@ function TransferDetailPage({
           <div className="mb-8 flex items-center rounded-2xl border border-black/10 bg-black/5 px-4 py-3">
             <input
               type="text"
-              placeholder="Add note..."
+              placeholder={t.add_note}
               value={note}
               onChange={(e) => setNote(e.target.value)}
               className="flex-1 bg-transparent text-base text-ink placeholder-black/50 outline-none"
@@ -130,7 +132,7 @@ function TransferDetailPage({
             onClick={() => setShowConfirm(true)}
             className="mt-8 w-full rounded-2xl bg-brand-lime py-4 text-lg font-semibold text-ink transition active:scale-95"
           >
-            Send Money
+            {t.send_money}
           </button>
 
           {/* Confirmation Modal */}
@@ -138,26 +140,26 @@ function TransferDetailPage({
             <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm px-4 py-6">
               <div className="w-full max-w-sm rounded-[32px] bg-white p-6 shadow-2xl">
                 <p className="mb-4 text-center text-xl font-semibold text-ink">
-                  Confirm Transfer
+                  {t.confirm_transfer}
                 </p>
 
                 <div className="mb-6 rounded-2xl bg-black/5 p-4">
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="text-sm text-black/60">Amount</span>
+                    <span className="text-sm text-black/60">{t.amount}</span>
                     <span className="text-lg font-semibold text-ink">
-                      ${formatAmount(amount)}
+                      {displayAmount()}
                     </span>
                   </div>
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="text-sm text-black/60">Recipient</span>
+                    <span className="text-sm text-black/60">{t.recipient}</span>
                     <span className="text-lg font-semibold text-ink">
                       {contact.name}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-black/60">Note</span>
+                    <span className="text-sm text-black/60">{t.note}</span>
                     <span className="text-sm text-black/50">
-                      {note || 'None'}
+                      {note || t.none}
                     </span>
                   </div>
                 </div>
@@ -168,14 +170,14 @@ function TransferDetailPage({
                     onClick={() => setShowConfirm(false)}
                     className="flex-1 rounded-2xl border border-black/10 bg-white py-3 text-base font-semibold text-ink transition hover:bg-black/5"
                   >
-                    Cancel
+                    {t.cancel}
                   </button>
                   <button
                     type="button"
                     onClick={onSuccess}
                     className="flex-1 rounded-2xl bg-brand-lime py-3 text-base font-semibold text-ink transition active:scale-95"
                   >
-                    Confirm
+                    {t.confirm}
                   </button>
                 </div>
               </div>

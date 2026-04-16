@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { CloseLinkButton } from '../../../components/shared/close-link-button';
+import { useLanguage } from '@/lib/i18n/context';
 
 export default function SelfieScanPage() {
   const router = useRouter();
+  const { t } = useLanguage();
 
   return (
     <main className="box-border min-h-dvh overflow-hidden bg-[radial-gradient(circle_at_top,#362820_0%,#17120f_50%,#0c0c0c_100%)] px-5 py-6 text-white">
@@ -17,8 +19,10 @@ export default function SelfieScanPage() {
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-4xl font-semibold tracking-tight">Selfie scan</h1>
-          <p className="text-base text-white/75">Look directly at the camera</p>
+          <h1 className="text-4xl font-semibold tracking-tight">
+            {t.selfie_scan}
+          </h1>
+          <p className="text-base text-white/75">{t.look_at_camera}</p>
         </div>
 
         <div className="mt-20 flex flex-1 items-center justify-center">
@@ -28,7 +32,7 @@ export default function SelfieScanPage() {
         <div className="mt-50 flex items-center justify-center gap-10 pb-12">
           <button
             type="button"
-            onClick={() => router.replace('/create-pin')}
+            onClick={() => router.replace('/enter-pin?mode=signup')}
             className="grid h-20 w-20 place-items-center rounded-full border-[6px] border-white bg-brand-lime shadow-[0_0_0_2px_rgba(255,255,255,0.25)]"
             aria-label="Capture selfie"
           >
