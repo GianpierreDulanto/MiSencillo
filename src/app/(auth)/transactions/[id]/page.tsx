@@ -1,9 +1,10 @@
 'use client';
 
+import { use } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n/context';
-import { useParams } from 'next/navigation';
+import type { Translations } from '@/lib/i18n/translations';
 
 type Transaction = {
   id: number;
@@ -18,18 +19,70 @@ type Transaction = {
   numberId: string;
 };
 
-const transactions: Transaction[] = [
-  // ... tus datos
-];
+type TranslationKeys = Pick<
+  Translations,
+  | 'today_1230_pm'
+  | 'yesterday_0800_am'
+  | 'may_10_600_pm'
+  | 'receive_from_alex'
+  | 'subscriptions_type'
+  | 'money_in_type'
+  | 'medium'
+>;
 
-export default function TransactionDetailPage() {
-  const params = useParams();
+function getTransactions(t: TranslationKeys): Transaction[] {
+  return [
+    {
+      id: 1,
+      name: 'Figma',
+      when: t.today_1230_pm,
+      amount: '-$250.00',
+      type: t.subscriptions_type,
+      status: 'Completed',
+      description: 'Monthly design subscription payment',
+      method: '7865',
+      fee: '$0.05',
+      numberId: '#8907654',
+    },
+    {
+      id: 2,
+      name: t.receive_from_alex,
+      when: t.yesterday_0800_am,
+      amount: '+$580.00',
+      type: t.money_in_type,
+      status: 'Completed',
+      description: 'Payment received from Alex',
+      method: '4452',
+      fee: '$0.00',
+      numberId: '#7788123',
+    },
+    {
+      id: 3,
+      name: t.medium,
+      when: t.may_10_600_pm,
+      amount: '-$99.00',
+      type: t.subscriptions_type,
+      status: 'Completed',
+      description: 'Monthly Medium subscription',
+      method: '7865',
+      fee: '$0.02',
+      numberId: '#6723411',
+    },
+  ];
+}
+
+type PageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default function TransactionDetailPage({ params }: PageProps) {
+  const { id } = use(params);
   const { t } = useLanguage();
+  const transactions = getTransactions(t as TranslationKeys);
 
-  // Estado derivado: directo del params
-  const transaction = params.id
-    ? transactions.find((tx) => tx.id === Number(params.id)) || null
-    : null;
+  const transaction = transactions.find((tx) => tx.id === Number(id));
 
   if (!transaction) {
     return <main className="min-h-screen p-5">{t.transaction_not_found}</main>;
@@ -86,7 +139,7 @@ export default function TransactionDetailPage() {
         </div>
 
         <button className="mt-8 w-full rounded-2xl bg-brand-lime py-4 font-semibold">
-          Share
+          {t.share}
         </button>
       </section>
     </main>

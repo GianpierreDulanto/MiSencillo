@@ -129,7 +129,7 @@ export default function SignInPage() {
 
             <div className="flex items-center justify-between gap-3 text-sm">
               <Link
-                href="/recover-email"
+                href="/verify-phone"
                 className="font-medium text-brand-violet transition hover:opacity-75"
               >
                 {t.forgot_password}

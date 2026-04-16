@@ -41,9 +41,11 @@ const FALLBACK_CONTEXT: LanguageContextType = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() =>
-    getStoredLanguage()
-  );
+  const [language, setLanguageState] = useState<Language>(DEFAULT_LANGUAGE);
+
+  useEffect(() => {
+    setLanguageState(getStoredLanguage());
+  }, []);
 
   // Listen for storage changes (sync across tabs)
   useEffect(() => {

@@ -4,6 +4,12 @@
   status = 200
   force = true
 
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/icons/icon-192.png"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/sw.js"
   [headers.values]

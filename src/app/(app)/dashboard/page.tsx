@@ -15,7 +15,7 @@ import {
   MoveUp,
   ScanLine,
   WalletCards,
-  ShoppingCart, // <-- Nuevo ícono importado
+  ShoppingCart,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -83,7 +83,7 @@ function ActionButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex h-14 flex-1 items-center justify-center gap-2 rounded-full bg-brand-lime px-3 text-base font-semibold min-w-0"
+      className="flex h-14 flex-1 min-w-0 items-center justify-center gap-2 rounded-full bg-brand-lime px-3 text-base font-semibold"
     >
       <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-surface text-ink">
         {icon}
@@ -203,7 +203,6 @@ export default function DashboardPage() {
           $12,765.00
         </p>
 
-        {/* Primary Action Row */}
         <div className="mt-8 flex items-center gap-2">
           <ActionButton
             icon={<MoveUp className="h-5 w-5" />}
@@ -223,7 +222,6 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        {/* NEW Important Purchase Button */}
         <Link
           href="/stores"
           className="mt-4 flex w-full items-center justify-center gap-3 rounded-full bg-brand-violet py-4 text-lg font-bold text-surface shadow-xl shadow-brand-violet/20 transition-transform active:scale-95"
@@ -295,7 +293,7 @@ export default function DashboardPage() {
             <button
               type="button"
               onClick={() => setScanOpen(true)}
-              aria-label={t.scan_button}
+              aria-label="Scan"
               className="grid h-14 w-14 place-items-center rounded-full bg-brand-lime text-ink shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
             >
               <ScanLine className="h-6 w-6" />
